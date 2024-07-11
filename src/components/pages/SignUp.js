@@ -14,10 +14,20 @@ export default function SignUp() {
         <div className='sign-up__container'>
           <h2>Sign Up</h2>
           <form className='sign-up__form'>
-            <label>Email</label> <br></br>
-            <input type='text' placeholder='johndoe@gmail.com'></input><br></br>
+          <label>FirstName</label> <br></br>
+            <input type='text' placeholder='Jason'></input><br></br>
+          <label>LastName</label> <br></br>
+            <input type='text' placeholder='Bourne'></input><br></br>
+          <label>Username</label> <br></br>
+            <input type='text' placeholder='toptravel'></input><br></br>
+           <label>Email</label> <br></br>
+            <input type='text' placeholder='toptravel@gmail.com'></input><br></br>
             <label>Password</label> <br></br>
-            <input type='password' placeholder='password'></input><br></br>
+            <input type='password' placeholder='Password'></input><br></br>
+          <label>Phone</label> <br></br>
+            <input type='text' placeholder='Phone Number'></input><br></br>
+          <label>DateOfBirth</label> <br></br>
+            <input type='text' placeholder='Date Of Birth'></input><br></br>
             <button type='submit' className='btn-sign'>Sign Up</button>
           </form>
 
