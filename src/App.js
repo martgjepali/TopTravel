@@ -7,12 +7,13 @@ import Services from "./components/pages/Services";
 import SignUp from "./components/pages/SignUp";
 import Destination from "./components/pages/Destination";
 import ScrollToTop from "./components/ScrollToTop";
+import Packages from "./components/pages/Packages";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <SearchProvider> {/* Wrap the entire application or just relevant parts */}
+      <SearchProvider>
         <Navbar />
         <ScrollToTop>
           <Routes>
@@ -23,6 +24,7 @@ function App() {
               path="/services/activity/:destinationId"
               element={<Destination />}
             />
+            <Route path="/filtered-packages/:destinationId" element={<Packages />} />
             <Route path="/packages/:packageId" element={<Destination />} />
           </Routes>
         </ScrollToTop>

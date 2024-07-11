@@ -1,37 +1,11 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  getPackagesByDestinationId,
-  getPackagesById,
-} from "../../apis/packageApi";
+import usePackageById from "../../hooks/usePackageById";
+
 import Footer from "../Footer";
 
 export default function Destination() {
-  const { destinationId, packageId } = useParams();
-  const [details, setDetails] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchDetails = async () => {
-      try {
-        if (destinationId) {
-          const data = await getPackagesByDestinationId(destinationId);
-          setDetails(data[0]); 
-        }
-        else if (packageId) {
-          const data = await getPackagesById(packageId);
-          setDetails(data[0]);
-        }
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDetails();
-  }, [destinationId]);
+  const { packageId } = useParams(); // Only using packageId as per your request
+  const { packageDetails: details, loading, error } = usePackageById(packageId);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading package details: {error.message}</div>;

@@ -85,7 +85,7 @@ export default function Services() {
               {currentDestinations.map((destination) => (
                 <DestinationCards
                   key={destination.DestinationID}
-                  path={`/services/activity/${destination.DestinationID}`}
+                  path={`/filtered-packages/${destination.DestinationID}`}
                   Country={destination.Country}
                   image={{
                   src: `${API_URL}/static/images/${destination.image.src.split('\\').pop()}`,
@@ -121,7 +121,7 @@ export default function Services() {
               {currentPackages.map((packageItem) => (
                 <PackagesCards
                   key={packageItem.PackageID}
-                  path={`/services/activity/${packageItem.DestinationID}`}
+                  path={`/packages/${packageItem.PackageID}`}
                   Country={packageItem.Country}
                   image={{
                     src: packageItem.Image.src,
