@@ -16,9 +16,13 @@ export const getPackages = async (skip = 0, limit = 10) => {
 
 export const getPackagesByDestinationId = async (destinationId) => {
     try {
-        const response = await axios.get(`${API_URL}/packages-by-destination/${destinationId}`);
+        const url = `${API_URL}/packages-by-destination/${destinationId}`;
+        console.log("Request URL:", url);  
+        const response = await axios.get(url);
+        console.log("Response Data:", response.data);
         return response.data; 
     } catch (error) {
+        console.error("API Error:", error);
         throw error;
     }
 };
