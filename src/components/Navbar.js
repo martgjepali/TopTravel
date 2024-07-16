@@ -18,7 +18,8 @@ function Navbar() {
 
   const handleLogout = async () => {
     await logout();
-    navigate("/sign-in"); // Redirect to sign-in page after logout
+    navigate("/sign-in"); 
+    closeMobileMenu();
   };
 
   const closeMobileMenu = () => setClick(false);
@@ -33,10 +34,12 @@ function Navbar() {
 
   useEffect(() => {
     showButton();
+    window.addEventListener("resize", showButton);
+    return () => window.removeEventListener("resize", showButton);
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;  // Or return null or any other placeholder you prefer
+    return <div>Loading...</div>; // Or return null or any other placeholder you prefer
   }
 
   window.addEventListener("resize", showButton);
@@ -68,15 +71,27 @@ function Navbar() {
                 Services
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                to="/sign-up"
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-              >
-                Sign up
-              </Link>
-            </li>
+            {isLoggedIn ? (
+              <li className="nav-item">
+                <Link
+                  to="/"
+                  className="nav-links-mobile"
+                  onClick={handleLogout}
+                >
+                  Sign Out
+                </Link>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link
+                  to="/sign-up"
+                  className="nav-links-mobile"
+                  onClick={closeMobileMenu}
+                >
+                  Sign Up
+                </Link>
+              </li>
+            )}
           </ul>
           {/* this is the children of Button component that has a buttonStyle */}
 
