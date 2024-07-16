@@ -1,14 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./Button";
+import { useAuthContext } from "../contexts/AuthProvider";
+import logo from "../assets/logo192.png";
 import "./Navbar.css";
-import logo from '../assets/logo192.png'
 
 function Navbar() {
+  const navigate = useNavigate();
   const [click, setClick] = useState(false);
+  const { user, logout, loading } = useAuthContext();
   const [button, setButton] = useState(true);
+  const isLoggedIn = !!user;
 
-  const handleClick = () => setClick(!click);
+  const handleClick = () => {
+    setClick(!click);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/sign-in"); // Redirect to sign-in page after logout
+  };
+
   const closeMobileMenu = () => setClick(false);
 
   const showButton = () => {
@@ -22,6 +34,10 @@ function Navbar() {
   useEffect(() => {
     showButton();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;  // Or return null or any other placeholder you prefer
+  }
 
   window.addEventListener("resize", showButton);
 
@@ -63,7 +79,18 @@ function Navbar() {
             </li>
           </ul>
           {/* this is the children of Button component that has a buttonStyle */}
-          {button && <Button buttonStyle="btn--outline">Sign Up</Button>}
+
+          {isLoggedIn
+            ? button && (
+                <Button onClick={handleLogout} buttonStyle="btn--outline">
+                  Sign Out
+                </Button>
+              )
+            : button && (
+                <Button path="/sign-up" buttonStyle="btn--outline">
+                  Sign Up
+                </Button>
+              )}
         </div>
       </nav>
     </>

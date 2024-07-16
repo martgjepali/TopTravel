@@ -1,31 +1,71 @@
-import React from 'react'
-import '../../App.css';
+import { useState } from "react";
+import { useAuthContext } from "../../contexts/AuthProvider";
+import { Link, useNavigate } from 'react-router-dom';
+import "../../App.css";
 
 const SignIn = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login, loading } = useAuthContext(); // This should use the login method from your auth context
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await login(email, password); // Attempt to log in with the provided credentials
+      setEmail("");
+      setPassword("");
+      navigate('/'); // Redirect to home page or dashboard as appropriate after login
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      // Optionally add error handling here to inform the user of login failure
+    }
+  };
+
   return (
-    <div className='form-modal__container'>
-    <div className='form-modal__wrapper' >
-      <div className='sign-up'>
-        <img src='/images/img-8.jpg' alt='Camels in the desert'></img>
-      </div>
-      <div className='sign-up__container'>
-        <h2>Sign Up</h2>
-        <form className='sign-up__form'>
-          <label>Email</label> <br></br>
-          <input type='text' placeholder='johndoe@gmail.com'></input><br></br>
-          <label>Password</label> <br></br>
-          <input type='password' placeholder='password'></input><br></br>
-          <button type='submit' className='btn-sign'>Sign Up</button>
+    <div className="container">
+      <div className="title">Sign In</div>
+      <div className="content">
+        <form onSubmit={handleSubmit}>
+          <div className="user-details">
+            <div className="input-box">
+              <span className="details">Email</span>
+              <input
+                type="text"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="input-box">
+              <span className="details">Password</span>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+          <button
+            className="button btn-signUp"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "Logging In..." : "Log In"}
+          </button>
         </form>
-
-        <div>
-          <p className='have-account'>Have an account? <span>Log In here </span></p>
-        </div>
+        <p className="account-info">
+          Don't have an account?{" "}
+          <Link to="/sign-up" className="sign-in-link">
+            Sign Up
+          </Link>
+        </p>
       </div>
-
     </div>
-  </div>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;
