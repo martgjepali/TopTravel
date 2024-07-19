@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./Button";
+import { useAuthContext } from "../contexts/AuthProvider";
+import logo from "../assets/logo192.png";
 import "./Navbar.css";
-import logo from '../assets/logo192.png'
 
 function Navbar() {
+  const navigate = useNavigate();
   const [click, setClick] = useState(false);
+  const { user, logout, loading } = useAuthContext();
   const [button, setButton] = useState(true);
+  const isLoggedIn = !!user;
 
-  const handleClick = () => setClick(!click);
+  const handleClick = () => {
+    setClick(!click);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/sign-in"); 
+    closeMobileMenu();
+  };
+
   const closeMobileMenu = () => setClick(false);
 
   const showButton = () => {
@@ -21,7 +34,13 @@ function Navbar() {
 
   useEffect(() => {
     showButton();
+    window.addEventListener("resize", showButton);
+    return () => window.removeEventListener("resize", showButton);
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Or return null or any other placeholder you prefer
+  }
 
   window.addEventListener("resize", showButton);
 
@@ -52,18 +71,41 @@ function Navbar() {
                 Services
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                to="/sign-up"
-                className="nav-links-mobile"
-                onClick={closeMobileMenu}
-              >
-                Sign up
-              </Link>
-            </li>
+            {isLoggedIn ? (
+              <li className="nav-item">
+                <Link
+                  to="/"
+                  className="nav-links-mobile"
+                  onClick={handleLogout}
+                >
+                  Sign Out
+                </Link>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link
+                  to="/sign-up"
+                  className="nav-links-mobile"
+                  onClick={closeMobileMenu}
+                >
+                  Sign Up
+                </Link>
+              </li>
+            )}
           </ul>
           {/* this is the children of Button component that has a buttonStyle */}
-          {button && <Button buttonStyle="btn--outline">Sign Up</Button>}
+
+          {isLoggedIn
+            ? button && (
+                <Button onClick={handleLogout} buttonStyle="btn--outline">
+                  Sign Out
+                </Button>
+              )
+            : button && (
+                <Button path="/sign-up" buttonStyle="btn--outline">
+                  Sign Up
+                </Button>
+              )}
         </div>
       </nav>
     </>

@@ -62,7 +62,7 @@ function Cards() {
             {destinations.map((destination) => (
               <DestinationCards
                 key={destination.DestinationID}
-                path={`/services/activity/${destination.DestinationID}`}
+                path={`/filtered-packages/${destination.DestinationID}`}
                 Country={destination.Country}
                 image={{
                   src: `${API_URL}/static/images/${destination.image.src
