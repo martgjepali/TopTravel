@@ -10,8 +10,7 @@ const usePackagesByDestinationId = (destinationId) => {
     const fetchPackages = async () => {
       try {
         const data = await getPackagesByDestinationId(destinationId);
-        console.log("Api data: " + data)
-        setPackages(data)
+        setPackages(data);
       } catch (err) {
         setError(err);
       } finally {
@@ -19,7 +18,7 @@ const usePackagesByDestinationId = (destinationId) => {
       }
     };
 
-    if (destinationId != null) {
+    if (destinationId) {
       fetchPackages();
     }
   }, [destinationId]);

@@ -1,20 +1,37 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAuthContext } from "../../contexts/AuthProvider";
-import usePackageById from "../../hooks/usePackageById";
-import Modal from "react-modal";
-
+import {
+  getPackagesByDestinationId,
+  getPackagesById,
+} from "../../apis/packageApi";
 import Footer from "../Footer";
 
-Modal.setAppElement("#root");
-
 export default function Destination() {
-  const navigate = useNavigate();
-  const { packageId } = useParams();
-  const { packageDetails: details, loading, error } = usePackageById(packageId);
-  const { user } = useAuthContext();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { destinationId, packageId } = useParams();
+  const [details, setDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        if (destinationId) {
+          const data = await getPackagesByDestinationId(destinationId);
+          setDetails(data[0]); 
+        }
+        else if (packageId) {
+          const data = await getPackagesById(packageId);
+          setDetails(data[0]);
+        }
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDetails();
+  }, [destinationId]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading package details: {error.message}</div>;
@@ -23,19 +40,6 @@ export default function Destination() {
   const backgroundImageUrl = imagePath
     ? imagePath
     : "../public/images/img-9.jpg";
-
-  const navigateToBooking = () => {
-    if (user) {
-      navigate("/book-package");
-    } else {
-      setModalIsOpen(true);
-    }
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-    navigate("/sign-in");
-  };
 
   return (
     <>
@@ -104,23 +108,12 @@ export default function Destination() {
               <p className="price">€ {details?.Price || 78}</p>
               <p className="per-person">per person</p>
             </section>
-            <button type="button" className="btn-book" onClick={navigateToBooking}>
-                Book now
+            <button type="button" className="btn-book">
+              Book now
             </button>
           </div>
         </div>
       </div>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        contentLabel="Login Required"
-        className="modal"
-        overlayClassName="overlay"
-      >
-        <h2>Authentication Required</h2>
-        <p>You must be logged in to make a booking.</p>
-        <button type="button" className="btn-book" onClick={closeModal}>Sign In</button>
-      </Modal>
       <Footer />
     </>
   );

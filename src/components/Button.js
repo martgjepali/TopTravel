@@ -1,6 +1,6 @@
 import React from 'react';
 import './Button.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // css classes
 const STYLES = ['btn--primary', 'btn--outline', 'btn--cta'];
@@ -12,30 +12,18 @@ export const Button = ({
   type, 
   onClick, 
   buttonStyle, 
-  buttonSize,
-  path = '/sign-up'
+  buttonSize
 }) => {
   //If the button component has a buttonstyle (true), otherwise applies 'btn--primary' class by default
   const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
 
   const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
-
-  const navigate = useNavigate();
-
-  const handleButtonClick = () => {
-    if (path) {
-      navigate(path);
-    }
-    if (onClick) {
-      onClick(); 
-    }
-  };
   
   return (
-    <Link to={path} className='btn-mobile'>
+    <Link to='/sign-up' className='btn-mobile'>
       <button
       className={`btn ${checkButtonStyle} ${checkButtonSize}`}
-      onClick={handleButtonClick}
+      onClick={onClick}
       type={type}
       >
         { /* whatever you put inside this component, it will render it via 'children 'prop*/ }
