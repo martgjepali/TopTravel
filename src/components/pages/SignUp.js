@@ -66,7 +66,7 @@ export default function SignUp() {
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                placeholder="Enter your last nam"
+                placeholder="Enter your last name"
                 required
               />
             </div>
@@ -120,7 +120,7 @@ export default function SignUp() {
           /> */}
         </form>
         <p class="account-info">
-          Already ave an account?{" "}
+          Already have an account?{" "}
           <Link to="/sign-in" class="sign-in-link">
             Sign In
           </Link>

@@ -6,11 +6,15 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setLoading(false);
+    const loadUserFromStorage = () => {
+      const storedUser = localStorage.getItem("user");
+      console.log("Stored user:", storedUser);
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+      setLoading(false);
+    };
+    loadUserFromStorage();
   }, []);
   
   const loginHandler = async (email, password) => {
@@ -21,6 +25,7 @@ export function useAuth() {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
+      console.log("User after login:", data);
     } catch (error) {
       console.error("Login failed", error);
     } finally {
