@@ -9,13 +9,13 @@ import SignUp from "./components/pages/SignUp";
 import Destination from "./components/pages/Destination";
 import ScrollToTop from "./components/ScrollToTop";
 import Packages from "./components/pages/Packages";
-import { AuthProvider } from "./contexts/AuthProvider";
+import Booking from "./components/pages/Booking";
+import AuthGuard from "./auth/AuthGuard";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <AuthProvider>
         <SearchProvider>
           <Navbar />
           <ScrollToTop>
@@ -27,10 +27,10 @@ function App() {
               <Route path="/services/activity/:destinationId" element={<Destination />} />
               <Route path="/filtered-packages/:destinationId" element={<Packages />} />
               <Route path="/packages/:packageId" element={<Destination />} />
+              <Route path="/book-package" element={<AuthGuard><Booking /></AuthGuard>} />
             </Routes>
           </ScrollToTop>
         </SearchProvider>
-      </AuthProvider>
     </div>
   );
 }

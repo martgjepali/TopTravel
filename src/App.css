@@ -153,6 +153,7 @@ h4 {
   font-weight: 500;
   position: relative;
   color: var(--color-dark);
+  margin-bottom: 20px
 }
 .container .title::before {
   content: "";
@@ -175,13 +176,14 @@ h4 {
   margin: 20px 0 12px 0;
 }
 form .user-details .input-box {
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   width: calc(100% / 2 - 20px);
 }
 form .input-box span.details {
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
+  margin-left: 5px;
 }
 .user-details .input-box input {
   height: 45px;
@@ -302,6 +304,53 @@ form .button {
   color: #fff;
 }
 
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid #000;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+}
+
+.modal p {
+  margin-bottom: 20px;
+}
+
+.modal button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background-color: #555;
+}
+
 @media only screen and (max-width: 798px) {
   .destination-container h2 {
     font-size: 2rem;
@@ -336,3 +385,5 @@ form .button {
     flex-direction: column;
   }
 }
+
+
