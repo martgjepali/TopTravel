@@ -14,7 +14,7 @@ const ForgotPassword = () => {
 
   return (
     <div className="container">
-      <div className="title">Forgot you Password?</div>
+      <div className="title">Forgot your Password?</div>
       <div className="content">
         <form onSubmit={handleSubmit}>
           <div className="user-details-fgp">

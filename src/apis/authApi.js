@@ -61,3 +61,16 @@ export async function resetPassword(email) {
       : new Error("Something went wrong");
   }
 }
+
+export const resetForgetPassword = async (secret_token, new_password, confirm_password) => {
+  try {
+    const response = await axiosInstance.post('/reset-password', {
+      secret_token,
+      new_password,
+      confirm_password
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response ? error.response.data : new Error('Something went wrong');
+  }
+};
