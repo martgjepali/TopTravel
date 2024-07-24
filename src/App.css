@@ -351,6 +351,10 @@ form .button {
   background-color: #555;
 }
 
+.forgot-password {
+  padding-top: 20px;
+}
+
 @media only screen and (max-width: 798px) {
   .destination-container h2 {
     font-size: 2rem;
