@@ -1,8 +1,7 @@
 import { useState } from "react";
 import useCreateUser from "../../hooks/useSignUp";
 import { Link } from "react-router-dom";
-import { GoogleLogin } from "@react-oauth/google";
-import "../../App.css";
+import AuthGoogle from "../AuthGoogle";
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -32,7 +31,6 @@ export default function SignUp() {
       setPhoneNumber("");
       setPassword("");
       setDateOfBirth("");
-
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -111,13 +109,16 @@ export default function SignUp() {
               />
             </div>
           </div>
-          <button class="button btn-signUp" type="submit" disabled={isLoading}>
-            {isLoading ? "Creating..." : "Create User"}
-          </button>
-          {/* <GoogleLogin
-            onSuccess={handleGoogleLoginSuccess}
-            onError={handleGoogleLoginError}
-          /> */}
+          <div className="button-container">
+            <button
+              class="button btn-signUp"
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? "Creating..." : "Create User"}
+            </button>
+            <AuthGoogle />
+          </div>
         </form>
         <p class="account-info">
           Already have an account?{" "}

@@ -1,0 +1,17 @@
+.btn-google {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--color-primary)
+}
+
+.btn-google:hover {
+  background-color: #357ae8;
+}

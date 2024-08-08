@@ -235,7 +235,11 @@ form input[type="radio"] {
 }
 form .button {
   height: 45px;
-  margin: 35px 0;
+  margin: 7px 0;
+}
+
+.button-container {
+  padding-bottom: 10px;
 }
 /* form .button input {
   height: 100%;
