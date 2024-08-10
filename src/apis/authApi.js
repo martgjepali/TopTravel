@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL || "https://localhost:8000";
@@ -35,42 +34,6 @@ export async function login(email, password) {
   }
 
   return response.json();
-=======
-import axios from 'axios';
-
-const API_URL = process.env.REACT_APP_API_URL || 'https://localhost:8000';
-
-const axiosInstance = axios.create({
-    baseURL: API_URL, 
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  export const createUser = async (user) => {
-    try {
-      const response = await axiosInstance.post('/users/create', user);
-      return response.data;
-    } catch (error) {
-      throw error.response ? error.response.data : new Error('Something went wrong');
-    }
-  };
-
-  export async function login(email, password) {
-    const response = await fetch(`${API_URL}/token`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-    });
-
-    if (!response.ok) {
-        throw new Error("Login failed");
-    }
-
-    return response.json();
->>>>>>> a0463ba8797d9697fec70dd63374df3fe26025ae
 }
 
 export async function logout(token) {
@@ -87,7 +50,6 @@ export async function logout(token) {
 
   return response.json();
 }
-<<<<<<< HEAD
 
 export async function resetPassword(email) {
   try {
@@ -112,5 +74,3 @@ export const resetForgetPassword = async (secret_token, new_password, confirm_pa
     throw error.response ? error.response.data : new Error('Something went wrong');
   }
 };
-=======
->>>>>>> a0463ba8797d9697fec70dd63374df3fe26025ae
