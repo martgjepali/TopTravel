@@ -26,7 +26,7 @@ export default function Destination() {
 
   const navigateToBooking = () => {
     if (user) {
-      navigate("/book-package");
+      navigate(`/book-package/${packageId}`);
     } else {
       setModalIsOpen(true);
     }
@@ -104,7 +104,7 @@ export default function Destination() {
               <p className="price">€ {details?.Price || 78}</p>
               <p className="per-person">per person</p>
             </section>
-            <button type="button" className="btn-book" onClick={navigateToBooking}>
+            <button type="button" className="btn-book" onClick={() => navigateToBooking(packageId)}>
                 Book now
             </button>
           </div>
