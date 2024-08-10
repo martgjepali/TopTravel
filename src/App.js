@@ -18,23 +18,36 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-        <SearchProvider>
-          <Navbar />
-          <ScrollToTop>
-            <Routes>
-              <Route path="/" exact element={<Home />} />
-              <Route path="/services" exact element={<Services />} />
-              <Route path="/sign-in" exact element={<SignIn />} />
-              <Route path="/sign-up" exact element={<SignUp />} />
-              <Route path="/services/activity/:destinationId" element={<Destination />} />
-              <Route path="/filtered-packages/:destinationId" element={<Packages />} />
-              <Route path="/packages/:packageId" element={<Destination />} />
-              <Route path="/book-package" element={<AuthGuard><Booking /></AuthGuard>} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/reset-password" element={<ResetPassword />} />
-            </Routes>
-          </ScrollToTop>
-        </SearchProvider>
+      <SearchProvider>
+        <Navbar />
+        <ScrollToTop>
+          <Routes>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/services" exact element={<Services />} />
+            <Route path="/sign-in" exact element={<SignIn />} />
+            <Route path="/sign-up" exact element={<SignUp />} />
+            <Route
+              path="/services/activity/:destinationId"
+              element={<Destination />}
+            />
+            <Route
+              path="/filtered-packages/:destinationId"
+              element={<Packages />}
+            />
+            <Route path="/packages/:packageId" element={<Destination />} />
+            <Route
+              path="/book-package/:packageId"
+              element={
+                <AuthGuard>
+                  <Booking />
+                </AuthGuard>
+              }
+            />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+          </Routes>
+        </ScrollToTop>
+      </SearchProvider>
     </div>
   );
 }
