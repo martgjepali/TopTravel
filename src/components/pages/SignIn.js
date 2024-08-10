@@ -63,11 +63,14 @@ const SignIn = () => {
             Sign Up
           </Link>
         </p>
+<<<<<<< HEAD
         <p className="forgot-password">
           <Link to="/forgot-password">
             Forgot your password?
           </Link>
         </p>
+=======
+>>>>>>> a0463ba8797d9697fec70dd63374df3fe26025ae
       </div>
     </div>
   );
