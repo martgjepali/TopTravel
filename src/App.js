@@ -5,6 +5,7 @@ import { SearchProvider } from "./contexts/SearchProvider";
 import { Routes, Route } from "react-router-dom";
 import Services from "./components/pages/Services";
 import SignIn from "./components/pages/SignIn";
+import SignIn from "./components/pages/SignIn";
 import SignUp from "./components/pages/SignUp";
 import Destination from "./components/pages/Destination";
 import ScrollToTop from "./components/ScrollToTop";

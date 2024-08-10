@@ -4,6 +4,12 @@
   --color-dark: #000000; /* Black for contrast and text */
 }
 
+:root {
+  --color-primary: #1f98f4; /* A shade of blue from the logo */
+  --color-accent: #ffa500; /* A standard orange that might match your logo */
+  --color-dark: #000000; /* Black for contrast and text */
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -153,7 +159,30 @@ h4 {
   font-weight: 500;
   position: relative;
   color: var(--color-dark);
-  margin-bottom: 20px
+  margin-bottom: 20px;
+  /* Sign up Page */
+}
+
+.container {
+  max-width: 700px;
+  width: 100%;
+  background-color: #fff;
+  padding: 25px 30px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  margin-top: 100px; /* Adjust this value as needed to push the container down */
+  margin-left: auto;
+  margin-right: auto;
+}
+.container .title {
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+  color: var(--color-dark);
+  margin-bottom: 20px;
 }
 .container .title::before {
   content: "";
@@ -170,7 +199,47 @@ h4 {
   );
 }
 .content form .user-details {
+  .container .title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    height: 3px;
+    width: 30px;
+    border-radius: 5px;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
+  }
+}
+.content form .user-details {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px 0 12px 0;
+}
+form .user-details .input-box {
+  /* margin-bottom: 15px; */
+  width: calc(100% / 2 - 20px);
+}
+form .input-box span.details {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+.user-details .input-box input {
+  height: 45px;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 20px 0 12px 0;
@@ -205,7 +274,22 @@ form .gender-details .gender-title {
   font-weight: 500;
 }
 form .category {
+  .user-details .input-box input:focus,
+  .user-details .input-box input:valid {
+    border-color: var(--color-primary);
+  }
+}
+form .gender-details .gender-title {
+  font-size: 20px;
+  font-weight: 500;
+}
+form .category {
   display: flex;
+  width: 80%;
+  margin: 14px 0;
+  justify-content: space-between;
+}
+form .category label {
   width: 80%;
   margin: 14px 0;
   justify-content: space-between;
@@ -213,6 +297,7 @@ form .category {
 form .category label {
   display: flex;
   align-items: center;
+  cursor: pointer;
   cursor: pointer;
 }
 form .category label .dot {
@@ -229,6 +314,21 @@ form .category label .dot {
 #dot-3:checked ~ .category label .three {
   background: #9b59b6;
   border-color: #d9d9d9;
+  form .category label .dot {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background: #d9d9d9;
+    border: 5px solid transparent;
+    transition: all 0.3s ease;
+  }
+  #dot-1:checked ~ .category label .one,
+  #dot-2:checked ~ .category label .two,
+  #dot-3:checked ~ .category label .three {
+    background: #9b59b6;
+    border-color: #d9d9d9;
+  }
 }
 form input[type="radio"] {
   display: none;
@@ -236,8 +336,14 @@ form input[type="radio"] {
 form .button {
   height: 45px;
   margin: 35px 0;
-}
-/* form .button input {
+  form input[type="radio"] {
+    display: none;
+  }
+  form .button {
+    height: 45px;
+    margin: 35px 0;
+  }
+  /* form .button input {
   height: 100%;
   width: 100%;
   border-radius: 5px;
@@ -251,114 +357,192 @@ form .button {
   background: var(--color-primary);
 } */
 
-.btn-signUp {
+  .btn-signUp {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    /* form .button input {
   height: 100%;
   width: 100%;
   border-radius: 5px;
   border: none;
-  color: #fff;
+  color: $;
   font-size: 22px;
   font-weight: 500;
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
   background: var(--color-primary);
-}
+} */
 
-.btn-signUp:hover {
-  /* transform: scale(0.99); */
-  background: linear-gradient(
-    -135deg,
-    var(--color-primary),
-    var(--color-accent)
-  );
-}
+    .btn-signUp {
+      height: 100%;
+      width: 100%;
+      border-radius: 5px;
+      border: none;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      font-size: 22px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: var(--color-primary);
+    }
 
-/* End Of Sign Up Page */
+    .btn-signUp:hover {
+      /* transform: scale(0.99); */
+      background: linear-gradient(
+        -135deg,
+        var(--color-primary),
+        var(--color-accent)
+      );
+    }
 
-.pagination {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
+    /* End Of Sign Up Page */
+    transition: all 0.3s ease;
+    background: var(--color-primary);
+  }
 
-.pagination button {
-  background-color: var(--color-primary); /* Adjust the color code as needed */
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  margin: 0 5px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
+  .btn-signUp:hover {
+    /* transform: scale(0.99); */
+    background: linear-gradient(
+      -135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
+  }
 
-.pagination button:hover {
-  background-color: var(
-    --color-accent
-  ); /* A lighter or different shade for hover */
-}
+  /* End Of Sign Up Page */
 
-.pagination button.active {
-  background-color: var(--color-dark); /* A darker shade for the active page */
-  color: #fff;
-}
+  .pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
 
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border: 2px solid #000;
-}
+  .pagination button {
+    background-color: var(
+      --color-primary
+    ); /* Adjust the color code as needed */
+    background-color: var(
+      --color-primary
+    ); /* Adjust the color code as needed */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-}
+  .pagination button:hover {
+    background-color: var(
+      --color-accent
+    ); /* A lighter or different shade for hover */
+    background-color: var(
+      --color-accent
+    ); /* A lighter or different shade for hover */
+  }
 
-.modal h2 {
-  margin-bottom: 20px;
-}
+  .pagination button.active {
+    background-color: var(
+      --color-dark
+    ); /* A darker shade for the active page */
+    background-color: var(
+      --color-dark
+    ); /* A darker shade for the active page */
+    color: #fff;
+  }
 
-.modal p {
-  margin-bottom: 20px;
-}
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid #000;
+  }
 
-.modal button {
-  display: block;
-  margin: 0 auto;
-  padding: 10px 20px;
-  border: none;
-  background-color: #333;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-}
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 
-.modal button:hover {
-  background-color: #555;
-}
+  .modal h2 {
+    margin-bottom: 20px;
+  }
 
-.forgot-password {
-  padding-top: 20px;
-}
+  .modal p {
+    margin-bottom: 20px;
+  }
 
-@media only screen and (max-width: 798px) {
-  .destination-container h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+  .modal button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .modal button:hover {
+    background-color: #555;
+  }
+
+  .forgot-password {
+    padding-top: 20px;
+  }
+
+  @media only screen and (max-width: 798px) {
+    .destination-container h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .container {
+      max-width: 100%;
+    }
+
+    form .user-details .input-box {
+      margin-bottom: 15px;
+      width: 100%;
+    }
+
+    form .category {
+      width: 100%;
+    }
+
+    .content form .user-details {
+      max-height: 300px;
+      overflow-y: scroll;
+    }
+
+    .user-details::-webkit-scrollbar {
+      width: 5px;
+    }
+  }
+
+  @media (max-width: 459px) {
+    .container .content .category {
+      flex-direction: column;
+    }
   }
 
   .container {
@@ -389,5 +573,3 @@ form .button {
     flex-direction: column;
   }
 }
-
-
