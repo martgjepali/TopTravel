@@ -13,7 +13,9 @@ import Booking from "./components/pages/Booking";
 import AuthGuard from "./auth/AuthGuard";
 import ForgotPassword from "./components/pages/ForgotPassword";
 import ResetPassword from "./components/pages/ResetPassword";
+import ActivateAccount from "./components/pages/ActivateAccount";
 import "./App.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -45,6 +47,7 @@ function App() {
             />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/activate-account" element={<ActivateAccount />} />
           </Routes>
         </ScrollToTop>
       </SearchProvider>

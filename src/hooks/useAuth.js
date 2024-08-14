@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { login, logout } from "../apis/authApi";
+import { toast } from "react-toastify";
 
 export function useAuth() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadUserFromStorage = () => {
@@ -25,13 +28,15 @@ export function useAuth() {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
-      console.log("User after login:", data);
+      navigate("/"); // Example redirection on successful login
     } catch (error) {
       console.error("Login failed", error);
+      toast.error("Incorrect email or passwrod"); 
     } finally {
       setLoading(false);
     }
   };
+  
 
   const logoutHandler = async () => {
     const token = localStorage.getItem("token"); 

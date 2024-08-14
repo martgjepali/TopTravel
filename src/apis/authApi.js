@@ -29,11 +29,13 @@ export async function login(email, password) {
     body: JSON.stringify({ email, password }),
   });
 
-  if (!response.ok) {
-    throw new Error("Login failed");
-  }
+  const data = await response.json();
 
-  return response.json();
+  if (response.ok) {
+    return data;
+  } else {
+    throw new Error(`Login failed with status ${response.status}`);
+  }
 }
 
 export async function logout(token) {
@@ -62,15 +64,21 @@ export async function resetPassword(email) {
   }
 }
 
-export const resetForgetPassword = async (secret_token, new_password, confirm_password) => {
+export const resetForgetPassword = async (
+  secret_token,
+  new_password,
+  confirm_password
+) => {
   try {
-    const response = await axiosInstance.post('/reset-password', {
+    const response = await axiosInstance.post("/reset-password", {
       secret_token,
       new_password,
-      confirm_password
+      confirm_password,
     });
     return response.data;
   } catch (error) {
-    throw error.response ? error.response.data : new Error('Something went wrong');
+    throw error.response
+      ? error.response.data
+      : new Error("Something went wrong");
   }
 };
