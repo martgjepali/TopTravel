@@ -1,7 +1,5 @@
 import axios from "axios";
-import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || "https://localhost:8000";
 const API_URL = process.env.REACT_APP_API_URL || "https://localhost:8000";
 
 const axiosInstance = axios.create({
@@ -10,11 +8,6 @@ const axiosInstance = axios.create({
     "Content-Type": "application/json",
   },
 });
-  baseURL: API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
 
 export const createUser = async (user) => {
   try {
@@ -26,25 +19,7 @@ export const createUser = async (user) => {
       : new Error("Something went wrong");
   }
 };
-export const createUser = async (user) => {
-  try {
-    const response = await axiosInstance.post("/users/create", user);
-    return response.data;
-  } catch (error) {
-    throw error.response
-      ? error.response.data
-      : new Error("Something went wrong");
-  }
-};
 
-export async function login(email, password) {
-  const response = await fetch(`${API_URL}/token`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password }),
-  });
 export async function login(email, password) {
   const response = await fetch(`${API_URL}/token`, {
     method: "POST",
