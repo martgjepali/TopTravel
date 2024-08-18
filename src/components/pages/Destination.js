@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthProvider";
 import usePackageById from "../../hooks/usePackageById";
+import Reviews from "../Reviews";
 import Modal from "react-modal";
 
 import Footer from "../Footer";
@@ -95,6 +96,7 @@ export default function Destination() {
             {details?.FullDescription ||
               "Explore the paradise of Presidente Figueiredo on a full-day tour from Manaus..."}
           </p>
+          <Reviews packageId={packageId} />
         </div>
 
         <div className="booking-container">

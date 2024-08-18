@@ -6,6 +6,13 @@ function PackagesCards({ path, Country, image, PackageName, Description, Price }
   const imageSrc = image?.src ? image.src : defaultImage;
   const imageTitle = image?.title || 'Default title';
 
+  const truncateDescription = (text, maxLength = 50) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + '...';
+    }
+    return text;
+  };
+
   return (
     <li className="cards__item">
       <Link to={path} className="cards__item__link">
@@ -18,7 +25,7 @@ function PackagesCards({ path, Country, image, PackageName, Description, Price }
         </figure>
         <div className="cards__item__info">
           <h5 className="cards__item__text">{PackageName}</h5>
-          <p className="cards__item__text">{Description}</p>
+          <p className="cards__item__text">{truncateDescription(Description)}</p>
           <h5 className="cards__item__text">Price: €{Price}</h5>
         </div>
       </Link>
