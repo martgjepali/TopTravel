@@ -3,7 +3,7 @@ import { resetForgetPassword } from '../apis/authApi';
 import { useNavigate } from 'react-router-dom';
 
 const useResetPassword = () => {
-  const navigatoTo = useNavigate();
+  const navigateTo = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [message, setMessage] = useState('');
@@ -15,7 +15,7 @@ const useResetPassword = () => {
       const response = await resetForgetPassword(secret_token, new_password, confirm_password);
       if (response && response.success) {
         setMessage(response.message);
-        navigatoTo('/sign-in');
+        navigateTo('/sign-in');
       } else {
         setError('Failed to reset password. Please try again.');
       }

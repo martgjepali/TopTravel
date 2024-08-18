@@ -1,5 +1,7 @@
 import axios from "axios";
+import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL || "https://localhost:8000";
 const API_URL = process.env.REACT_APP_API_URL || "https://localhost:8000";
 
 const axiosInstance = axios.create({
@@ -8,7 +10,22 @@ const axiosInstance = axios.create({
     "Content-Type": "application/json",
   },
 });
+  baseURL: API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
+export const createUser = async (user) => {
+  try {
+    const response = await axiosInstance.post("/users/create", user);
+    return response.data;
+  } catch (error) {
+    throw error.response
+      ? error.response.data
+      : new Error("Something went wrong");
+  }
+};
 export const createUser = async (user) => {
   try {
     const response = await axiosInstance.post("/users/create", user);
@@ -28,12 +45,22 @@ export async function login(email, password) {
     },
     body: JSON.stringify({ email, password }),
   });
+export async function login(email, password) {
+  const response = await fetch(`${API_URL}/token`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  });
 
-  if (!response.ok) {
-    throw new Error("Login failed");
+  const data = await response.json();
+
+  if (response.ok) {
+    return data;
+  } else {
+    throw new Error(`Login failed with status ${response.status}`);
   }
-
-  return response.json();
 }
 
 export async function logout(token) {
@@ -62,15 +89,21 @@ export async function resetPassword(email) {
   }
 }
 
-export const resetForgetPassword = async (secret_token, new_password, confirm_password) => {
+export const resetForgetPassword = async (
+  secret_token,
+  new_password,
+  confirm_password
+) => {
   try {
-    const response = await axiosInstance.post('/reset-password', {
+    const response = await axiosInstance.post("/reset-password", {
       secret_token,
       new_password,
-      confirm_password
+      confirm_password,
     });
     return response.data;
   } catch (error) {
-    throw error.response ? error.response.data : new Error('Something went wrong');
+    throw error.response
+      ? error.response.data
+      : new Error("Something went wrong");
   }
 };
