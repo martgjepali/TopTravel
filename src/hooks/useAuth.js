@@ -27,6 +27,7 @@ export function useAuth() {
       sessionStorage.setItem("session_token", data.session_token);
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data));
+      console.log("User data: ", data)
       setUser(data);
       navigate("/"); // Example redirection on successful login
     } catch (error) {
