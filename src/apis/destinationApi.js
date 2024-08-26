@@ -2,8 +2,6 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const API_URL = "https://server-app-zxcxm.ondigitalocean.app";
-
 export const getDestinations = async ({
   skip = 0,
   limit = 10,
