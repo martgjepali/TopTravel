@@ -1,8 +1,14 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_URL = process.env.REACT_APP_API_URL || 'https://localhost:8000';
+const API_URL = process.env.REACT_APP_API_URL;
 
-export const getDestinations = async ({ skip = 0, limit = 10, destinationName, startDate, endDate } = {}) => {
+export const getDestinations = async ({
+  skip = 0,
+  limit = 10,
+  destinationName,
+  startDate,
+  endDate,
+} = {}) => {
   const params = {
     skip,
     limit,
@@ -19,8 +25,9 @@ export const getDestinations = async ({ skip = 0, limit = 10, destinationName, s
   }
 
   const response = await axios.get(`${API_URL}/destinations`, { params });
+  console.log("API URL:", API_URL);
   return {
     data: response.data,
-    total: parseInt(response.headers['x-total-count'], 10)
+    total: parseInt(response.headers["x-total-count"], 10),
   };
 };

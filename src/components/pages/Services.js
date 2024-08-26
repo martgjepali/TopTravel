@@ -11,7 +11,7 @@ import "./Services.css";
 
 export default function Services() {
   const destinationsSectionRef = useRef(null);
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+  const API_URL = process.env.REACT_APP_API_URL;
   const {
     destinations,
     loading: destinationsLoading,
