@@ -2,7 +2,7 @@ import { useSearch } from "../contexts/SearchProvider";
 import "../App.css";
 import "./HeroSection.css";
 
-function HeroSection() {
+function HeroSection({ cardsRef }) {
   const { setFilters } = useSearch();
 
   const handleSubmit = (event) => {
@@ -13,6 +13,9 @@ function HeroSection() {
       startDate: formData.get("check-in"),
       endDate: formData.get("check-out"),
     });
+    if (cardsRef.current) {
+      cardsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   return (
