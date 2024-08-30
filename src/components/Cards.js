@@ -1,6 +1,7 @@
 import React, { useState, useEffect, forwardRef } from "react";
 import useLimitedDestinations from "../hooks/useLimitedDestinations";
 import DestinationCards from "./DestinationCards";
+import MoonLoader from "react-spinners/MoonLoader";
 import "./Cards.css";
 
 const Cards = forwardRef((props, ref) => {
@@ -8,16 +9,46 @@ const Cards = forwardRef((props, ref) => {
   const [skip, setSkip] = useState(0);
   const [destinations, setDestinations] = useState([]);
   const [noMoreDestinations, setNoMoreDestinations] = useState(false);
-  const { destinations: fetchDestinations, loading, error, filters } = useLimitedDestinations(skip, 4);
+  const {
+    destinations: fetchDestinations,
+    loading,
+    error,
+    filters,
+  } = useLimitedDestinations(skip, 4);
+
+  const [showSpinner, setShowSpinner] = useState(false);
+  const [forceSpinnerDisplay, setForceSpinnerDisplay] = useState(false);
+  const [smallSpinner, setSmallSpinner] = useState(false);
+
+  useEffect(() => {
+    if (loading) {
+      setShowSpinner(true);
+      setForceSpinnerDisplay(true); 
+      setTimeout(() => {
+        setForceSpinnerDisplay(false); 
+      }, 3000);
+    }
+
+    if (!loading && !forceSpinnerDisplay) {
+      setShowSpinner(false);
+      setSmallSpinner(false);
+    }
+  }, [loading, forceSpinnerDisplay]);
 
   useEffect(() => {
     if (skip === 0) {
       setDestinations(fetchDestinations);
     } else {
       const newDestinations = fetchDestinations.filter(
-        (newDest) => !destinations.some((dest) => dest.DestinationID === newDest.DestinationID)
+        (newDest) =>
+          !destinations.some(
+            (dest) => dest.DestinationID === newDest.DestinationID
+          )
       );
-      setDestinations((prevDestinations) => [...prevDestinations, ...newDestinations]);
+      setDestinations((prevDestinations) => [
+        ...prevDestinations,
+        ...newDestinations,
+      ]);
     }
 
     if (fetchDestinations.length === 0 && skip !== 0) {
@@ -35,6 +66,7 @@ const Cards = forwardRef((props, ref) => {
 
   const loadMoreDestinations = () => {
     if (!noMoreDestinations) {
+      setSmallSpinner(true);
       setSkip((prevSkip) => prevSkip + 4);
     }
   };
@@ -42,7 +74,7 @@ const Cards = forwardRef((props, ref) => {
   if (error) {
     return <div>Error loading destinations: {error.message}</div>;
   }
-  
+
   const noDestinationsMessage = () => {
     if (filters.startDate || filters.endDate) {
       return "No destinations available for the selected dates.";
@@ -55,10 +87,10 @@ const Cards = forwardRef((props, ref) => {
 
   return (
     <div ref={ref} className="cards">
-      <h1>Check out these epic destinations!</h1>
+      <h1 data-aos="fade-up">Check out these epic destinations!</h1>
       <div className="cards__container">
         <div className="cards__wrapper">
-          <ul className="cards__items">
+          <ul className="cards__items" >
             {destinations.map((destination) => (
               <DestinationCards
                 key={destination.DestinationID}
@@ -75,11 +107,21 @@ const Cards = forwardRef((props, ref) => {
               />
             ))}
           </ul>
-          {loading && <div>Loading...</div>}
-          {!loading && destinations.length === 0 && (
-            <div className="no-more-destinations">
-              {noDestinationsMessage()}
-            </div>
+          {showSpinner && (
+            <MoonLoader  
+              color="#ff7300"
+              loading={loading}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          )}
+          {!showSpinner &&
+            destinations.map((dest) => (
+              <div key={dest.DestinationID}>{dest.name}</div>
+            ))}
+          {!showSpinner && noMoreDestinations && (
+            <div>No more destinations available.</div>
           )}
           {!loading && destinations.length > 0 && !noMoreDestinations && (
             <button onClick={loadMoreDestinations} className="load-more-button">

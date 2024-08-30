@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useCreateUser from "../../hooks/useSignUp";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -14,29 +14,32 @@ export default function SignUp() {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const { user, isLoading, error, success, handleCreateUser } = useCreateUser();
 
+  useEffect(() => {
+    if (success) {
+      toast.success("User created successfully, You can Log in now.");
+    } else if (error) {
+      toast.error(error);
+    }
+  }, [success, error]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      await handleCreateUser({
-        FirstName: firstName,
-        LastName: lastName,
-        Email: email,
-        Password: password,
-        Phone: phoneNumber,
-        DateOfBirth: dateOfBirth,
-      });
+    await handleCreateUser({
+      FirstName: firstName,
+      LastName: lastName,
+      Email: email,
+      Password: password,
+      Phone: phoneNumber,
+      DateOfBirth: dateOfBirth,
+    });
 
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPhoneNumber("");
-      setPassword("");
-      setDateOfBirth("");
-      toast.success("User created successfully, You can Log in now.");
-    } catch (error) {
-      toast.error("Error creating user. Please try again.");
-    }
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPhoneNumber("");
+    setPassword("");
+    setDateOfBirth("");
   };
 
   const handleGoogleLoginSuccess = () => {
@@ -48,13 +51,13 @@ export default function SignUp() {
   return (
     <>
       <ToastContainer />
-      <div class="container">
-        <div class="title">Sign Up</div>
-        <div class="content">
+      <div className="container">
+        <div className="title">Sign Up</div>
+        <div className="content">
           <form onSubmit={handleSubmit}>
-            <div class="user-details">
-              <div class="input-box">
-                <span class="details">First Name</span>
+            <div className="user-details">
+              <div className="input-box">
+                <span className="details">First Name</span>
                 <input
                   type="text"
                   value={firstName}
@@ -63,8 +66,8 @@ export default function SignUp() {
                   required
                 />
               </div>
-              <div class="input-box">
-                <span class="details">Last Name</span>
+              <div className="input-box">
+                <span className="details">Last Name</span>
                 <input
                   type="text"
                   value={lastName}
@@ -73,8 +76,8 @@ export default function SignUp() {
                   required
                 />
               </div>
-              <div class="input-box">
-                <span class="details">Email</span>
+              <div className="input-box">
+                <span className="details">Email</span>
                 <input
                   type="text"
                   value={email}
@@ -83,8 +86,8 @@ export default function SignUp() {
                   required
                 />
               </div>
-              <div class="input-box">
-                <span class="details">Phone Number</span>
+              <div className="input-box">
+                <span className="details">Phone Number</span>
                 <input
                   type="text"
                   value={phoneNumber}
@@ -93,8 +96,8 @@ export default function SignUp() {
                   required
                 />
               </div>
-              <div class="input-box">
-                <span class="details">Password</span>
+              <div className="input-box">
+                <span className="details">Password</span>
                 <input
                   type="password"
                   value={password}
@@ -103,8 +106,8 @@ export default function SignUp() {
                   required
                 />
               </div>
-              <div class="input-box">
-                <span class="details">Date of Birth</span>
+              <div className="input-box">
+                <span className="details">Date of Birth</span>
                 <input
                   type="date"
                   placeholder="Enter your date of birth"
@@ -115,7 +118,7 @@ export default function SignUp() {
               </div>
             </div>
             <button
-              class="button btn-signUp"
+              className="button btn-signUp"
               type="submit"
               disabled={isLoading}
             >
@@ -126,9 +129,9 @@ export default function SignUp() {
             onError={handleGoogleLoginError}
           /> */}
           </form>
-          <p class="account-info">
+          <p className="account-info">
             Already have an account?{" "}
-            <Link to="/sign-in" class="sign-in-link">
+            <Link to="/sign-in" className="sign-in-link">
               Sign In
             </Link>
           </p>
