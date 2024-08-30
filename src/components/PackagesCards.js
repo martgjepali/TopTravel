@@ -14,7 +14,7 @@ function PackagesCards({ path, Country, image, PackageName, Description, Price }
   };
 
   return (
-    <li className="cards__item">
+    <li className="cards__item" data-aos="fade-up">
       <Link to={path} className="cards__item__link">
         <figure data-category={Country} className="cards__item__pic-wrap">
           <img

@@ -16,7 +16,7 @@ function HeroSection() {
   };
 
   return (
-    <div className="hero-container">
+    <div className="hero-container" data-aos="zoom-in">
       <video
         src="/videos/video-1.mp4"
         autoPlay
