@@ -1,14 +1,15 @@
-import React from 'react';
+import { useRef } from 'react';
 import '../../App.css';
 import Cards from '../Cards';
 import Footer from '../Footer';
 import HeroSection from '../HeroSection';
 
 function Home() {
+  const cardsRef = useRef(null);
   return (
     <>
-      <HeroSection />
-      <Cards />
+      <HeroSection cardsRef={cardsRef} />
+      <Cards ref={cardsRef} />
       <Footer />
     </>
   );
