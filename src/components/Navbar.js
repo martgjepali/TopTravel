@@ -67,6 +67,15 @@ function Navbar() {
                 Services
               </Link>
             </li>
+            <li className="nav-item">
+              <Link
+                to="/contact"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
+                Contact Us
+              </Link>
+            </li>
             {isLoggedIn ? (
               <li className="nav-item">
                 <Link

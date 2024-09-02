@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/pages/Home";
+import Contact from "./components/pages/Contact"
 import { SearchProvider } from "./contexts/SearchProvider";
 import { Routes, Route } from "react-router-dom";
 import Services from "./components/pages/Services";
@@ -70,7 +71,7 @@ function App() {
         <MoonLoader
           height="100"
           width="100"
-          color="#FFA500" // Adjust the color as needed
+          color="#ff7300" // Adjust the color as needed
           ariaLabel="loading-indicator"
         />
       </div>
@@ -85,6 +86,7 @@ function App() {
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/services" exact element={<Services />} />
+            <Route path="/contact" exact element={<Contact />} />
             <Route
               path="/sign-in"
               element={
