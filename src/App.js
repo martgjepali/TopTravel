@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/pages/Home";
 import { SearchProvider } from "./contexts/SearchProvider";
@@ -17,8 +17,10 @@ import ActivateAccount from "./components/pages/ActivateAccount";
 import PaymentSuccessPage from "./components/pages/PaymentSuccessPage";
 import PaymentErrorPage from "./components/pages/PaymentErrorPage";
 import PublicRoute from "./routes/PublicRoute";
+import MoonLoader from "react-spinners/MoonLoader";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
+import "react-datepicker/dist/react-datepicker.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -44,12 +46,37 @@ AOS.init({
 });
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     AOS.init({
       duration: 2000,
     });
+    setTimeout(() => {
+      setLoading(false); // Set loading to false after the content is ready
+    }, 2000);
   }, []);
-  
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <MoonLoader
+          height="100"
+          width="100"
+          color="#FFA500" // Adjust the color as needed
+          ariaLabel="loading-indicator"
+        />
+      </div>
+    ); // Show the loader while loading is true
+  }
+
   return (
     <div className="App">
       <SearchProvider>

@@ -18,9 +18,14 @@ export const getDestinations = async ({ skip = 0, limit = 10, destinationName, s
     params.end_date = endDate;
   }
 
-  const response = await axios.get(`${API_URL}/destinations`, { params });
-  return {
-    data: response.data,
-    total: parseInt(response.headers['x-total-count'], 10)
-  };
+  try {
+    const response = await axios.get(`${API_URL}/destinations`, { params });
+    return {
+      data: response.data,
+      total: parseInt(response.headers['x-total-count'], 10)
+    };
+  } catch (error) {
+    console.error("Error fetching destinations:", error);
+    throw error; 
+  }
 };

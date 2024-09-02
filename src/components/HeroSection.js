@@ -1,17 +1,40 @@
+import { useState, useEffect } from "react";
 import { useSearch } from "../contexts/SearchProvider";
+import DatePicker from "react-datepicker";
 import "../App.css";
 import "./HeroSection.css";
 
 function HeroSection() {
-  const { setFilters } = useSearch();
+  const { setFilters, filters } = useSearch();
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
+  useEffect(() => {
+    console.log("Current Filters:", filters);
+  }, [filters]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
+
+    const adjustedStartDate = startDate
+      ? new Date(startDate.getTime() - startDate.getTimezoneOffset() * 60000)
+          .toISOString()
+          .split("T")[0]
+      : "";
+    const adjustedEndDate = endDate
+      ? new Date(endDate.getTime() - endDate.getTimezoneOffset() * 60000)
+          .toISOString()
+          .split("T")[0]
+      : "";
+
+    console.log("Adjusted Check-in Date:", adjustedStartDate);
+    console.log("Adjusted Check-out Date:", adjustedEndDate);
+
     setFilters({
       destinationName: formData.get("location"),
-      startDate: formData.get("check-in"),
-      endDate: formData.get("check-out"),
+      startDate: adjustedStartDate,
+      endDate: adjustedEndDate,
     });
   };
 
@@ -41,11 +64,26 @@ function HeroSection() {
         <div className="row-container">
           <div className="search-container">
             <label>Check in</label>
-            <input name="check-in" type="date" />
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              dateFormat="MM/dd/yyyy"
+              placeholderText="Check-in Date"
+              name="check-in" // Optional, helps identify in formData but not necessary for DatePicker
+              className="date-picker-input"
+            />
           </div>
           <div className="search-container">
             <label>Check out</label>
-            <input name="check-out" type="date" />
+            <DatePicker
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              dateFormat="MM/dd/yyyy"
+              placeholderText="Check-out Date"
+              name="check-out" // Optional, helps identify in formData but not necessary for DatePicker
+              className="date-picker-input"
+              minDate={startDate} // Ensures the end date is after the start date
+            />
           </div>
         </div>
         <div className="search-container">

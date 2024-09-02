@@ -38,10 +38,6 @@ function Navbar() {
     return () => window.removeEventListener("resize", showButton);
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>; // Or return null or any other placeholder you prefer
-  }
-
   window.addEventListener("resize", showButton);
 
   return (

@@ -111,6 +111,12 @@ h1 {
   text-align: center;
 }
 
+.no-destinations-message {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 20px;
+  text-align: center;
+}
 
 @media only screen and (min-width: 1200px) {
   .content__blog__container {
