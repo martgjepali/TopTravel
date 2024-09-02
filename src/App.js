@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/pages/Home";
@@ -57,6 +56,7 @@ function App() {
     setTimeout(() => {
       setLoading(false); // Set loading to false after the content is ready
     }, 2000);
+
   }, []);
 
   if (loading) {
@@ -79,7 +79,6 @@ function App() {
     ); // Show the loader while loading is true
   }
   }, []);
-  
 
   return (
     <div className="App">
