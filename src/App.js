@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/pages/Home";
-import Contact from "./components/pages/Contact"
+import Contact from "./components/pages/Contact";
 import { SearchProvider } from "./contexts/SearchProvider";
 import { Routes, Route } from "react-router-dom";
 import Services from "./components/pages/Services";
@@ -25,6 +25,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+// Initialize AOS
 AOS.init({
   // Global settings:
   disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
@@ -36,7 +37,7 @@ AOS.init({
   debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
   throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
 
-  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+  // Settings that can be overridden on a per-element basis, by `data-aos-*` attributes:
   offset: 120, // offset (in px) from the original trigger point
   delay: 0, // values from 0 to 3000, with step 50ms
   duration: 400, // values from 0 to 3000, with step 50ms
