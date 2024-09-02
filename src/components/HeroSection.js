@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "../App.css";
 import "./HeroSection.css";
 
-function HeroSection() {
+function HeroSection({ cardsRef }) {
   const { setFilters, filters } = useSearch();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -36,6 +36,9 @@ function HeroSection() {
       startDate: adjustedStartDate,
       endDate: adjustedEndDate,
     });
+    if (cardsRef.current) {
+      cardsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   return (

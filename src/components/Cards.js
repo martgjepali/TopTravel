@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import useLimitedDestinations from "../hooks/useLimitedDestinations";
 import DestinationCards from "./DestinationCards";
 import MoonLoader from "react-spinners/MoonLoader";
 import "./Cards.css";
 
-function Cards() {
+const Cards = forwardRef((props, ref) => {
   const API_URL = process.env.REACT_APP_API_URL;
   const [skip, setSkip] = useState(0);
   const [destinations, setDestinations] = useState([]);
@@ -90,7 +90,7 @@ function Cards() {
   };
 
   return (
-    <div className="cards">
+    <div ref={ref} className="cards">
       <h1 data-aos="fade-up">Check out these epic destinations!</h1>
       <div className="cards__container">
         <div className="cards__wrapper">
@@ -141,5 +141,5 @@ function Cards() {
       </div>
     </div>
   );
-}
+})
 export default Cards;
