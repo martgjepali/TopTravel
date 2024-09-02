@@ -11,10 +11,13 @@ const useLimitedDestinations = (skip = 0, limit = 4) => {
   useEffect(() => {
     const fetchDestinations = async () => {
       setLoading(true);
+      setError(null); // Reset error state before fetching
       try {
         const response = await getDestinations({ skip, limit, ...filters });
         const fetchedData = response.data;
-        setDestinations((prev) => (skip === 0 ? fetchedData : [...prev, ...fetchedData]));
+        setDestinations((prev) =>
+          skip === 0 ? fetchedData : [...prev, ...fetchedData]
+        );
       } catch (err) {
         setError(err);
         console.error("Failed to fetch destinations:", err);
@@ -26,7 +29,7 @@ const useLimitedDestinations = (skip = 0, limit = 4) => {
     fetchDestinations();
   }, [skip, limit, filters]);
 
-  return { destinations, loading, error, filters };
+  return { destinations, loading, error };
 };
 
 export default useLimitedDestinations;

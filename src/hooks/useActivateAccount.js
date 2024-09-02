@@ -1,27 +1,25 @@
 import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
 import { activateAccount } from "../apis/accountActivationApi";
-import { toast } from "react-toastify";
 
 const useActivateAccount = () => {
   const [email, setEmail] = useState(""); // Added state for email
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  // const navigate = useNavigate();
 
   const activateAccountHandler = async () => {
-    // No longer pass code as argument
+    setError(null);
+    setSuccess(null);
     setLoading(true);
     try {
       const response = await activateAccount({ email, code });
-      if (response && response.success) {
-        toast.success(response.message || "Account activated successfully!");
-      } else {
-        toast.error(
-          response.message || "Failed to activate account. Please try again."
-        );
-      }
-    } catch (err) {
-      toast.error("An error occurred. Please try again later.");
-      console.error("Error activating account:", err);
+      setSuccess("Account Activated Successfully");
+      // navigate("/sign-in");
+    } catch (error) {
+      setError(error.detail || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -31,6 +29,8 @@ const useActivateAccount = () => {
     setEmail, // Make setEmail available for binding in form
     setCode,
     activateAccountHandler,
+    success,
+    error,
     loading,
   };
 };

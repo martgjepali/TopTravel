@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useUserProfile } from "../../hooks/useUserProfile";
 import usePackageById from "../../hooks/usePackageById";
 import { useBooking } from "../../hooks/useBooking";
 import { usePayment } from "../../hooks/usePayment";
+import MoonLoader from "react-spinners/MoonLoader";
 
 import "./Booking.css";
 
@@ -27,9 +28,45 @@ const Booking = () => {
   } = usePayment();
 
   const [numberOfPeople, setNumberOfPeople] = useState(1);
+  const [showSpinner, setShowSpinner] = useState(false);
+  const [forceSpinnerDisplay, setForceSpinnerDisplay] = useState(false);
 
-  if (userLoading || packageLoading || bookingLoading || paymentLoading) {
-    return <div>Loading...</div>;
+  useEffect(() => {
+    if (userLoading || packageLoading || bookingLoading || paymentLoading) {
+      setShowSpinner(true);
+      setForceSpinnerDisplay(true);
+      setTimeout(() => {
+        setForceSpinnerDisplay(false);
+      }, 2000); // Ensures spinner shows for at least 4 seconds
+    } else if (!forceSpinnerDisplay) {
+      setShowSpinner(false);
+    }
+  }, [
+    userLoading,
+    packageLoading,
+    bookingLoading,
+    paymentLoading,
+    forceSpinnerDisplay,
+  ]);
+
+  if (showSpinner) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <MoonLoader
+          height="100"
+          width="100"
+          color="#FFA500" // Adjust the color as needed
+          ariaLabel="loading-indicator"
+        />
+      </div>
+    );
   }
 
   if (userError || packageError || bookingError || paymentError) {
@@ -64,7 +101,7 @@ const Booking = () => {
         quantity: 1,
       };
       const sessionResponse = await initiatePayment(paymentDetails);
-      console.log(sessionResponse)
+      console.log(sessionResponse);
 
       if (sessionResponse) {
         window.location.href = sessionResponse;
