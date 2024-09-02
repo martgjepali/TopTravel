@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/pages/Home";
@@ -77,6 +78,8 @@ function App() {
       </div>
     ); // Show the loader while loading is true
   }
+  }, []);
+  
 
   return (
     <div className="App">

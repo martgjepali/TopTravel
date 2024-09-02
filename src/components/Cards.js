@@ -23,9 +23,10 @@ const Cards = forwardRef((props, ref) => {
   useEffect(() => {
     if (loading) {
       setShowSpinner(true);
-      setForceSpinnerDisplay(true);
+
+      setForceSpinnerDisplay(true); 
       setTimeout(() => {
-        setForceSpinnerDisplay(false);
+        setForceSpinnerDisplay(false); 
       }, 3000);
     }
 
@@ -94,10 +95,45 @@ const Cards = forwardRef((props, ref) => {
       <h1 data-aos="fade-up">Check out these epic destinations!</h1>
       <div className="cards__container">
         <div className="cards__wrapper">
+
           {!loading && destinations.length === 0 && (
             <div className="no-destinations-message">
               {noDestinationsMessage()}
             </div>
+
+          <ul className="cards__items" >
+            {destinations.map((destination) => (
+              <DestinationCards
+                key={destination.DestinationID}
+                path={`/filtered-packages/${destination.DestinationID}`}
+                Country={destination.Country}
+                image={{
+                  src: `${API_URL}/static/images/${destination.image.src
+                    .split("\\")
+                    .pop()}`,
+                  title: destination.image.title,
+                }}
+                DestinationName={destination.DestinationName}
+                Description={destination.Description}
+              />
+            ))}
+          </ul>
+          {showSpinner && (
+            <MoonLoader  
+              color="#ff7300"
+              loading={loading}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          )}
+          {!showSpinner &&
+            destinations.map((dest) => (
+              <div key={dest.DestinationID}>{dest.name}</div>
+            ))}
+          {!showSpinner && noMoreDestinations && (
+            <div>No more destinations available.</div>
+
           )}
           {destinations.length > 0 && (
             <ul className="cards__items">
