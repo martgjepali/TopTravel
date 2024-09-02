@@ -29,12 +29,14 @@ export const getDestinations = async ({
     params.end_date = endDate;
   }
 
-  // Use the secureUrl function to adjust the API URL if necessary
-  const response = await axios.get(secureUrl(`${API_URL}/destinations`), { params });
-  console.log("API URL:", API_URL);  // This will help you debug the actual API URL used in requests
-  
-  return {
-    data: response.data,
-    total: parseInt(response.headers["x-total-count"], 10),
-  };
+  try {
+    const response = await axios.get(`${API_URL}/destinations`, { params });
+    return {
+      data: response.data,
+      total: parseInt(response.headers['x-total-count'], 10)
+    };
+  } catch (error) {
+    console.error("Error fetching destinations:", error);
+    throw error; 
+  }
 };

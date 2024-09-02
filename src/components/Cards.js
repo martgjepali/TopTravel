@@ -23,9 +23,9 @@ const Cards = forwardRef((props, ref) => {
   useEffect(() => {
     if (loading) {
       setShowSpinner(true);
-      setForceSpinnerDisplay(true); 
+      setForceSpinnerDisplay(true);
       setTimeout(() => {
-        setForceSpinnerDisplay(false); 
+        setForceSpinnerDisplay(false);
       }, 3000);
     }
 
@@ -76,10 +76,14 @@ const Cards = forwardRef((props, ref) => {
   }
 
   const noDestinationsMessage = () => {
+    if (!filters) {
+      return "No destinations found.";
+    }
+
     if (filters.startDate || filters.endDate) {
       return "No destinations available for the selected dates.";
-    } else if (filters.location) {
-      return `No destinations found for "${filters.location}".`;
+    } else if (filters.destinationName) {
+      return `No destinations found for "${filters.destinationName}".`;
     } else {
       return "No destinations found.";
     }
@@ -90,25 +94,32 @@ const Cards = forwardRef((props, ref) => {
       <h1 data-aos="fade-up">Check out these epic destinations!</h1>
       <div className="cards__container">
         <div className="cards__wrapper">
-          <ul className="cards__items" >
-            {destinations.map((destination) => (
-              <DestinationCards
-                key={destination.DestinationID}
-                path={`/filtered-packages/${destination.DestinationID}`}
-                Country={destination.Country}
-                image={{
-                  src: `${API_URL}/static/images/${destination.image.src
-                    .split("\\")
-                    .pop()}`,
-                  title: destination.image.title,
-                }}
-                DestinationName={destination.DestinationName}
-                Description={destination.Description}
-              />
-            ))}
-          </ul>
+          {!loading && destinations.length === 0 && (
+            <div className="no-destinations-message">
+              {noDestinationsMessage()}
+            </div>
+          )}
+          {destinations.length > 0 && (
+            <ul className="cards__items">
+              {destinations.map((destination) => (
+                <DestinationCards
+                  key={destination.DestinationID}
+                  path={`/filtered-packages/${destination.DestinationID}`}
+                  Country={destination.Country}
+                  image={{
+                    src: `${API_URL}/static/images/${destination.image.src
+                      .split("\\")
+                      .pop()}`,
+                    title: destination.image.title,
+                  }}
+                  DestinationName={destination.DestinationName}
+                  Description={destination.Description}
+                />
+              ))}
+            </ul>
+          )}
           {showSpinner && (
-            <MoonLoader  
+            <MoonLoader
               color="#ff7300"
               loading={loading}
               size={50}
@@ -116,21 +127,14 @@ const Cards = forwardRef((props, ref) => {
               data-testid="loader"
             />
           )}
-          {!showSpinner &&
-            destinations.map((dest) => (
-              <div key={dest.DestinationID}>{dest.name}</div>
-            ))}
-          {!showSpinner && noMoreDestinations && (
-            <div>No more destinations available.</div>
-          )}
           {!loading && destinations.length > 0 && !noMoreDestinations && (
             <button onClick={loadMoreDestinations} className="load-more-button">
               Load More
             </button>
           )}
-          {!loading && noMoreDestinations && (
+          {!loading && noMoreDestinations && destinations.length > 0 && (
             <div className="no-more-destinations">
-              {noDestinationsMessage()}
+              No more destinations available.
             </div>
           )}
         </div>

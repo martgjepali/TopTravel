@@ -54,7 +54,7 @@ const FilteredPackages = () => {
               <MoonLoader
                 height="100"
                 width="100"
-                color="#FFA500" // Adjust the color as needed
+                color="#ff7300" // Adjust the color as needed
                 ariaLabel="loading-indicator"
               />
             </div> // Show a loading message while data is being fetched
