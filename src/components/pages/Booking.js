@@ -169,7 +169,7 @@ const Booking = () => {
               </div>
             </div>
             <button
-              className="btn"
+              className="load-more-button"
               type="submit"
               disabled={bookingLoading || paymentLoading}
             >

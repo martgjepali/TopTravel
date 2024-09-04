@@ -131,7 +131,7 @@ export default function SignUp() {
           </form>
           <p className="account-info">
             Already have an account?{" "}
-            <Link to="/sign-in" className="sign-in-link">
+            <Link to="/sign-in" className="sign-in-link links">
               Sign In
             </Link>
           </p>

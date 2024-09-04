@@ -6,17 +6,22 @@ import usePackageById from "../../hooks/usePackageById";
 import Reviews from "../Reviews";
 import Modal from "react-modal";
 import MoonLoader from "react-spinners/MoonLoader";
+import useReviews from "../../hooks/useReviews";
+import ReactStars from "react-rating-stars-component";
 
 import Footer from "../Footer";
+import "./Destination.css";
 
 Modal.setAppElement("#root");
 
 export default function Destination() {
   const navigate = useNavigate();
   const { packageId } = useParams();
+  const { averageRating } = useReviews(packageId);
   const { packageDetails: details, loading, error } = usePackageById(packageId);
   const { user } = useAuthContext();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
 
   const [showSpinner, setShowSpinner] = useState(false);
   const [forceSpinnerDisplay, setForceSpinnerDisplay] = useState(false);
@@ -76,36 +81,45 @@ export default function Destination() {
     navigate("/sign-in");
   };
 
+  const openReviewModal = () => {
+    setIsReviewModalOpen(true);
+  };
+
+  const closeReviewModal = () => {
+    setIsReviewModalOpen(false);
+  };
+
   return (
     <>
-      <div
-        className="destination"
-        style={{ backgroundImage: `url(${backgroundImageUrl})` }}
-      ></div>
-      <div className="destination-container" data-aos="fade-up">
-        <div className="info-wrapper">
-          <h2>
-            {details?.PackageName ||
-              "Explore the hidden waterfall inside the Amazon Jungle"}
-          </h2>
-          <p>
-            {details?.Description ||
-              "Visit the Amazon Jungle, admire the hidden waterfalls, and enjoy a kayak tour..."}
-          </p>
-          <p>
-            <strong>Country:</strong> {details?.Country || "Unknown"}
-          </p>
-          <p>
-            <strong>Duration:</strong> {details?.Duration || "N/A"}
-          </p>
-          <p>
-            <strong>Start Date:</strong> {details?.StartDate || "N/A"}
-          </p>
-          <p>
-            <strong>End Date:</strong> {details?.EndDate || "N/A"}
-          </p>
+      <div style={{ backgroundColor: "white" }}>
+        <div
+          className="destination"
+          style={{ backgroundImage: `url(${backgroundImageUrl})` }}
+        ></div>
+        <div className="destination-container" data-aos="fade-up">
+          <div className="info-wrapper">
+            <h2>
+              {details?.PackageName ||
+                "Explore the hidden waterfall inside the Amazon Jungle"}
+            </h2>
+            <p>
+              {details?.Description ||
+                "Visit the Amazon Jungle, admire the hidden waterfalls, and enjoy a kayak tour..."}
+            </p>
+            <p>
+              <strong>Country:</strong> {details?.Country || "Unknown"}
+            </p>
+            <p>
+              <strong>Duration:</strong> {details?.Duration || "N/A"}
+            </p>
+            <p>
+              <strong>Start Date:</strong> {details?.StartDate || "N/A"}
+            </p>
+            <p>
+              <strong>End Date:</strong> {details?.EndDate || "N/A"}
+            </p>
 
-          {/* <h3>Experience</h3>
+            {/* <h3>Experience</h3>
           <h4>Highlights</h4>
           <ul>
             {details?.Highlights?.map((highlight, index) => (
@@ -129,28 +143,55 @@ export default function Destination() {
               </>
             )}
           </ul> */}
-          <h4>Full description</h4>
-          <p>
-            {details?.FullDescription ||
-              "Explore the paradise of Presidente Figueiredo on a full-day tour from Manaus..."}
-          </p>
-          <Reviews packageId={packageId} />
-        </div>
-
-        <div className="booking-container">
-          <div className="booking-wrapper">
-            <section className="booking-info">
-              <h5>From</h5>
-              <p className="price">€ {details?.Price || 78}</p>
-              <p className="per-person">per person</p>
-            </section>
+            <h4>Average Rating:</h4>
+            <ReactStars
+              count={5}
+              value={averageRating}
+              size={24}
+              isHalf={true}
+              edit={false} // Read-only for average rating
+              activeColor="#ffd700"
+            />
             <button
               type="button"
-              className="btn-book"
-              onClick={() => navigateToBooking(packageId)}
+              className="btn-review"
+              onClick={openReviewModal}
             >
-              Book now
+              Leave a Review
             </button>
+
+            <Modal
+              isOpen={isReviewModalOpen}
+              onRequestClose={closeReviewModal}
+              contentLabel="Leave a Review"
+              className="modal"
+              overlayClassName="overlay"
+            >
+              <h2>Write Your Review</h2>
+              <Reviews packageId={packageId} />
+              {/* <button
+                type="button"
+                className="btn-close"
+                onClick={closeReviewModal}
+              >
+                Close
+              </button> */}
+            </Modal>
+          </div>
+          <div className="booking-container">
+            <div className="booking-wrapper">
+              <section className="booking-info">
+                <p className="price">€ {details?.Price || 78}</p>
+                <p className="per-person">per person</p>
+              </section>
+              <button
+                type="button"
+                className="btn-book"
+                onClick={() => navigateToBooking(packageId)}
+              >
+                Book now
+              </button>
+            </div>
           </div>
         </div>
       </div>
