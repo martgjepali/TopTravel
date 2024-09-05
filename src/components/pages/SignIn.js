@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "../../contexts/AuthProvider";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "../../App.css";
+import "./SignIn.css";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -59,12 +59,12 @@ const SignIn = () => {
           </form>
           <p className="account-info">
             Don't have an account?{" "}
-            <Link to="/sign-up" className="sign-in-link">
+            <Link to="/sign-up" className="sign-in-link links">
               Sign Up
             </Link>
           </p>
           <p className="forgot-password">
-            <Link to="/forgot-password">Forgot your password?</Link>
+            <Link className="links" to="/forgot-password">Forgot your password?</Link>
           </p>
         </div>
       </div>

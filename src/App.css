@@ -27,13 +27,9 @@ body {
   font-size: 3rem;
 }
 
-.services {
-  background-image: url("../public/images/img-2.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
+.links {
+  text-decoration: none;
+  font-weight: 600;
 }
 
 /*
@@ -306,18 +302,18 @@ form .button {
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
   transform: translate(-50%, -50%);
+  width: auto; /* Automatically size based on content, or set a max-width */
+  max-width: 90%; /* Ensure it doesn't get too wide on large screens */
   background: #fff;
-  padding: 30px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border: 2px solid #000;
+  border: 1px solid #ccc; /* Lighter border for subtlety */
+  z-index: 1050; /* Make sure it's above other content */
 }
 
 .overlay {
@@ -382,6 +378,11 @@ form .button {
 
   .user-details::-webkit-scrollbar {
     width: 5px;
+  }
+
+  .modal {
+    width: 75%; /* Increase to 95% of screen width */
+    max-width: none; /* Overrides any max-width set previously */
   }
 }
 

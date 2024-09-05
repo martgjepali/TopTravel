@@ -58,7 +58,14 @@
   transition: opacity 300ms, transform 300ms;
 }
 
-
+.services {
+  background-image: url("../../../public/images/img-2.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-size: 100px;
+}
 
 @media only screen and (min-width: 1024px) {
   .services-items {
@@ -73,6 +80,10 @@
 }
 
 @media only screen and (max-width: 960px) {
+  .services {
+    font-size: 60px;
+  }
+
   .services-items {
     display: flex;
     flex-direction: row;
