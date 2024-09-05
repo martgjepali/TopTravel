@@ -44,9 +44,9 @@ const Reviews = ({ packageId }) => {
   if (isLoading) return <p>Loading reviews...</p>;
 
   return (
-    <div>
+    <div className="reviews-container">
       <ToastContainer />
-      <h3>Average Rating:</h3>
+      {/* <h3>Average Rating:</h3>
       <ReactStars
         count={5}
         value={averageRating}
@@ -54,23 +54,24 @@ const Reviews = ({ packageId }) => {
         isHalf={true}
         edit={false} // Read-only for average rating
         activeColor="#ffd700"
-      />
+      /> */}
       <div>
-        <h4>Add Your Review:</h4>
         <textarea
           value={newReviewText}
           onChange={(e) => setNewReviewText(e.target.value)}
           placeholder="Add your review here..."
         />
-        <h4>Your Rating:</h4>
-        <ReactStars
-          count={5}
-          onChange={setRating}
-          size={24}
-          isHalf={true}
-          activeColor="#ffd700"
-          value={rating}
-        />
+        <div className="stars-container">
+          <ReactStars
+            count={5}
+            value={averageRating}
+            size={24}
+            isHalf={true}
+            edit={false}
+            activeColor="#ffd700"
+          />
+        </div>
+
         <button className="rating-btn" onClick={handleReviewSubmit}>
           Submit Review
         </button>
