@@ -65,14 +65,14 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <Link
-                to="/services"
+                to="/destinations"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
                 Services
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link
                 to="/contact"
                 className="nav-links"
@@ -80,7 +80,7 @@ function Navbar() {
               >
                 Contact
               </Link>
-            </li>
+            </li> */}
             
             {isLoggedIn ? (
               <li className="nav-item">
