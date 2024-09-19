@@ -21,6 +21,7 @@ import About from "./components/pages/About";
 import HowWeAre from "./components/pages/HowWeAre";
 import HowItWorks from "./components/pages/HowItWorks";
 import Testimonials  from "./components/pages/Testimonials";
+import TermOfServices from "./components/pages/TermOfServices";
 import PublicRoute from "./routes/PublicRoute";
 import MoonLoader from "react-spinners/MoonLoader";
 import "./App.css";
@@ -90,7 +91,7 @@ function App() {
         <ScrollToTop>
           <Routes>
             <Route path="/" exact element={<Home />} />
-            <Route path="/services" exact element={<Services />} />
+            <Route path="/destinations" exact element={<Services />} />
             <Route path="/contact" exact element={<Contact />} />
             <Route
               path="/sign-in"
@@ -134,6 +135,7 @@ function App() {
             <Route path="/how-we-are" element={<HowWeAre />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/terms-of-services" element={<TermOfServices />} />
           </Routes>
         </ScrollToTop>
       </SearchProvider>
