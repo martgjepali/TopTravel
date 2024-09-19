@@ -81,7 +81,6 @@ function Navbar() {
                 Contact
               </Link>
             </li> */}
-            
             {isLoggedIn ? (
               <li className="nav-item">
                 <Link
