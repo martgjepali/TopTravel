@@ -1,10 +1,11 @@
 import user1 from "../../assets/user-1.jpg";
 import user2 from "../../assets/user-2.jpg";
 import user3 from "../../assets/user-3.jpg";
+import Footer from "../Footer";
 
 import "./Testimonials.css";
 
-export default function Testimonials () {
+export default function Testimonials() {
   return (
     <>
       <section class="section__container">
@@ -54,6 +55,7 @@ export default function Testimonials () {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

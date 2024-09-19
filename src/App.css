@@ -2,6 +2,9 @@
   --color-primary: #1f98f4; /* A shade of blue from the logo */
   --color-accent: #ffa500; /* A standard orange that might match your logo */
   --color-dark: #000000; /* Black for contrast and text */
+  --text-dark: #0f172a;
+  --text-light: #94a3b8;
+  --white: #ffffff;
 }
 
 * {
@@ -12,7 +15,7 @@
 }
 
 body {
-  background: rgb(30, 30, 40);
+  /* background: rgb(30, 30, 40); */
   font-family: "Montserrat", sans-serif;
 }
 
@@ -150,7 +153,7 @@ h4 {
   font-weight: 500;
   position: relative;
   color: var(--color-dark);
-  margin-bottom: 20px
+  margin-bottom: 20px;
 }
 .container .title::before {
   content: "";
@@ -391,5 +394,3 @@ form .button {
     flex-direction: column;
   }
 }
-
-

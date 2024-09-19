@@ -109,7 +109,7 @@
   font-size: 20px;
   line-height: 28px;
   color: #fff;
-  background-color: #ff7300;
+  background-color: var(--color-accent);
   padding-top: 10px;
   padding-right: 50px;
   padding-bottom: 10px;
