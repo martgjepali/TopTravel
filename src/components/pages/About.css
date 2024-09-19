@@ -120,7 +120,7 @@ a {
 .explore {
   font-size: 20px;
   line-height: 28px;
-  color: #ff7300;
+  color: var(--color-accent);
   background-color: rgb(233, 174, 85);
   padding-top: 10px;
   padding-right: 50px;

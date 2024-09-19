@@ -1,10 +1,4 @@
-:root {
-  --primary-color: #ff7300;
-  --secondary-color: #149e9e;
-  --text-dark: #0f172a;
-  --text-light: #94a3b8;
-  --white: #ffffff;
-}
+
 
 .section__container {
   max-width: 1200px;
@@ -16,7 +10,7 @@
 .section__container h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--primary-color);
+  color: var(--color-accent);
 }
 
 .section__container h1 {
@@ -24,7 +18,7 @@
   margin-bottom: 2rem;
   font-size: 2.5rem;
   font-weight: 600;
-  color: var(--white);
+  color: rgb(28, 27, 27) 0%;
 }
 
 .section__container h1::after {
@@ -35,7 +29,7 @@
   transform: translateX(-50%);
   height: 2px;
   width: 5rem;
-  background-color: var(--primary-color);
+  background-color: var(--color-accent);
 }
 
 .section__grid {
@@ -64,7 +58,7 @@
   width: 75%;
   aspect-ratio: 1;
   border-radius: 100%;
-  background-color: var(--primary-color);
+  background-color: var(--color-accent);
   z-index: -1;
   transition: 0.5s;
 }
@@ -83,7 +77,7 @@
   margin-bottom: 1rem;
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--primary-color);
+  color: var(--color-accent);
   transition: 0.3s;
 }
 
@@ -97,14 +91,14 @@
   margin-bottom: 1rem;
   max-width: 100px;
   border-radius: 100%;
-  border: 2px solid var(--primary-color);
+  border: 2px solid var(--color-accent);
   transition: 0.3s;
 }
 
 .section__card h5 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--primary-color);
+  color: var(--color-accent);
   transition: 0.3s;
 }
 
