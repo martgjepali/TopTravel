@@ -1,0 +1,32 @@
+.how-it-works-section {
+    background-color: #fff; /* White background */
+    padding: 20px;
+    margin: 20px auto;
+    width: 100%; /* Keeps content contained */
+    height: 50vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* More pronounced shadow for emphasis */
+  }
+  
+  .how-it-works-section h2 {
+    color: #2C3E50; /* Dark color for headers */
+    font-size: 28px;
+  }
+  
+  .steps-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid layout */
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .step h3 {
+    color: #E67E22; /* Orange color for step titles, matching your theme */
+    margin-bottom: 10px;
+  }
+  
+  .step p {
+    color: #666; /* Medium grey color for text */
+    line-height: 1.6;
+  }
+  

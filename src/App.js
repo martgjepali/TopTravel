@@ -17,6 +17,10 @@ import ResetPassword from "./components/pages/ResetPassword";
 import ActivateAccount from "./components/pages/ActivateAccount";
 import PaymentSuccessPage from "./components/pages/PaymentSuccessPage";
 import PaymentErrorPage from "./components/pages/PaymentErrorPage";
+import About from "./components/pages/About";
+import HowWeAre from "./components/pages/HowWeAre";
+import HowItWorks from "./components/pages/HowItWorks";
+import Testimonials  from "./components/pages/Testimonials";
 import PublicRoute from "./routes/PublicRoute";
 import MoonLoader from "react-spinners/MoonLoader";
 import "./App.css";
@@ -126,6 +130,10 @@ function App() {
             <Route path="/activate-account" element={<ActivateAccount />} />
             <Route path="/payment-success" element={<PaymentSuccessPage />} />
             <Route path="/payment-error" element={<PaymentErrorPage />} />
+            <Route path="/about-us" element={<About />} />
+            <Route path="/how-we-are" element={<HowWeAre />} />
+            <Route path="/how-it-works" element={<HowItWorks />} />
+            <Route path="/testimonials" element={<Testimonials />} />
           </Routes>
         </ScrollToTop>
       </SearchProvider>
