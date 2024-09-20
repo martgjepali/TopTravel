@@ -107,9 +107,7 @@ const Cards = forwardRef((props, ref) => {
                   path={`/filtered-packages/${destination.DestinationID}`}
                   Country={destination.Country}
                   image={{
-                    src: `${API_URL}/static/images/${destination.image.src
-                      .split("\\")
-                      .pop()}`,
+                    src: `${API_URL}${destination.image.src}`,
                     title: destination.image.title,
                   }}
                   DestinationName={destination.DestinationName}
@@ -141,5 +139,5 @@ const Cards = forwardRef((props, ref) => {
       </div>
     </div>
   );
-})
+});
 export default Cards;
