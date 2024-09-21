@@ -36,19 +36,18 @@
 
 @media (max-width: 768px) {
   .how-it-works-section {
-    height: 100vh;
-    background-color: #fff; /* White background */
+    height: 100vh !important;
+    background-color: #fff; 
     padding: 20px;
     margin: auto;
-    width: 100%; /* Keeps content contained */
+    width: 100%;
     height: 50vh;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* More pronounced shadow for emphasis */
-
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
 
   .how-it-works-section h2 {
-      font-size: 22px; /* Slightly smaller title on mobile */
+      font-size: 22px; 
   }
 
   .step h3 {
