@@ -35,9 +35,16 @@
 }
 
 @media (max-width: 768px) {
-
   .how-it-works-section {
     height: 100vh;
+    background-color: #fff; /* White background */
+    padding: 20px;
+    margin: auto;
+    width: 100%; /* Keeps content contained */
+    height: 50vh;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* More pronounced shadow for emphasis */
+
   }
 
   .how-it-works-section h2 {
