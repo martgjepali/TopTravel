@@ -20,7 +20,7 @@ import PaymentErrorPage from "./components/pages/PaymentErrorPage";
 import About from "./components/pages/About";
 import HowWeAre from "./components/pages/HowWeAre";
 import HowItWorks from "./components/pages/HowItWorks";
-import Testimonials  from "./components/pages/Testimonials";
+import Testimonials from "./components/pages/Testimonials";
 import TermOfServices from "./components/pages/TermOfServices";
 import PublicRoute from "./routes/PublicRoute";
 import MoonLoader from "react-spinners/MoonLoader";
@@ -118,14 +118,7 @@ function App() {
               element={<Packages />}
             />
             <Route path="/packages/:packageId" element={<Destination />} />
-            <Route
-              path="/book-package/:packageId"
-              element={
-                <AuthGuard>
-                  <Booking />
-                </AuthGuard>
-              }
-            />
+            <Route path="/book-package/:packageId" element={<Booking />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/activate-account" element={<ActivateAccount />} />
