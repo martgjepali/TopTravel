@@ -28,6 +28,8 @@ const Booking = () => {
   } = usePayment();
 
   const [numberOfPeople, setNumberOfPeople] = useState(1);
+  const [guestName, setGuestName] = useState(""); // For guest name
+  const [guestEmail, setGuestEmail] = useState(""); // For guest email
   const [showSpinner, setShowSpinner] = useState(false);
   const [forceSpinnerDisplay, setForceSpinnerDisplay] = useState(false);
 
@@ -84,12 +86,17 @@ const Booking = () => {
   const handleCheckout = async (event) => {
     event.preventDefault();
     try {
+      // Construct booking details, handling guest vs logged-in user
       const bookingDetails = {
-        UserID: profile.UserID,
+        UserID: profile?.UserID || null, // Null if guest
         PackageID: packageDetails.PackageID,
         Status: "PENDING",
         NumberOfPeople: numberOfPeople,
+        UserEmail: profile ? null : guestEmail, // Only for guest
+        UserFirstName: profile ? null : guestName.split(" ")[0], // Only for guest
+        UserLastName: profile ? null : guestName.split(" ")[1] || "", // Only for guest
       };
+
       const bookingResponse = await handleCreateBooking(bookingDetails);
       const bookingId = bookingResponse.BookingID;
       const priceId = packageDetails.StripePriceID;
@@ -100,6 +107,7 @@ const Booking = () => {
         price_id: priceId,
         quantity: 1,
       };
+
       const sessionResponse = await initiatePayment(paymentDetails);
       console.log(sessionResponse);
 
@@ -118,31 +126,61 @@ const Booking = () => {
       <div className="col-75">
         <div className="container">
           <form onSubmit={handleCheckout}>
-            {" "}
-            {/* Note: Changed `htmlForm` to `form` */}
             <div className="row">
               <div className="col-50">
                 <h3>Booking Details</h3>
-                <label htmlFor="fname">
-                  <i className="fa fa-user"></i> Full Name
-                </label>
-                <input
-                  type="text"
-                  id="fname"
-                  name="firstname"
-                  value={`${profile?.FirstName} ${profile?.LastName}`}
-                  readOnly
-                />
-                <label htmlFor="email">
-                  <i className="fa fa-envelope"></i> Email
-                </label>
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  value={profile?.Email}
-                  readOnly
-                />
+
+                {/* If logged in, use profile data; otherwise, input fields for guest */}
+                {profile ? (
+                  <>
+                    <label htmlFor="fname">
+                      <i className="fa fa-user"></i> Full Name
+                    </label>
+                    <input
+                      type="text"
+                      id="fname"
+                      name="firstname"
+                      value={`${profile?.FirstName} ${profile?.LastName}`}
+                      readOnly
+                    />
+                    <label htmlFor="email">
+                      <i className="fa fa-envelope"></i> Email
+                    </label>
+                    <input
+                      type="text"
+                      id="email"
+                      name="email"
+                      value={profile?.Email}
+                      readOnly
+                    />
+                  </>
+                ) : (
+                  <>
+                    <label htmlFor="guestName">
+                      <i className="fa fa-user"></i> Full Name
+                    </label>
+                    <input
+                      type="text"
+                      id="guestName"
+                      name="guestName"
+                      value={guestName}
+                      onChange={(e) => setGuestName(e.target.value)}
+                      required
+                    />
+                    <label htmlFor="email">
+                      <i className="fa fa-envelope"></i> Email
+                    </label>
+                    <input
+                      type="email"
+                      id="guestEmail"
+                      name="guestEmail"
+                      value={guestEmail}
+                      onChange={(e) => setGuestEmail(e.target.value)}
+                      required
+                    />
+                  </>
+                )}
+
                 <label htmlFor="adr">
                   <i className="fa fa-address-card-o"></i> Package Name
                 </label>
