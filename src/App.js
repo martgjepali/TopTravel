@@ -22,6 +22,7 @@ import HowWeAre from "./components/pages/HowWeAre";
 import HowItWorks from "./components/pages/HowItWorks";
 import Testimonials from "./components/pages/Testimonials";
 import TermOfServices from "./components/pages/TermOfServices";
+import BookingHistory from "./components/BookingHistory";
 import PublicRoute from "./routes/PublicRoute";
 import MoonLoader from "react-spinners/MoonLoader";
 import "./App.css";
@@ -129,6 +130,14 @@ function App() {
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/terms-of-services" element={<TermOfServices />} />
+            <Route
+              path="/booking-history"
+              element={
+                <AuthGuard>
+                  <BookingHistory />
+                </AuthGuard>
+              }
+            />
           </Routes>
         </ScrollToTop>
       </SearchProvider>

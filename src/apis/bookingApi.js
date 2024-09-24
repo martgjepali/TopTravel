@@ -16,3 +16,16 @@ export const createBooking = async (bookingDetails) => {
     throw error;
   }
 };
+
+export const getBookingByUser = async (userID) => {
+  try {
+    const response = await axios.get(`${API_URL}/user-booking-history`, {
+      params: { user_id: userID },  
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching bookings for user:", error);
+    throw error;
+  }
+};
