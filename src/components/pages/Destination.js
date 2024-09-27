@@ -69,17 +69,13 @@ export default function Destination() {
     : "../public/images/img-9.jpg";
 
   const navigateToBooking = () => {
-    if (user) {
-      navigate(`/book-package/${packageId}`);
-    } else {
-      setModalIsOpen(true);
-    }
+    navigate(`/book-package/${packageId}`);
   };
 
-  const closeModal = () => {
-    setModalIsOpen(false);
-    navigate("/sign-in");
-  };
+  // const closeModal = () => {
+  //   setModalIsOpen(false);
+  //   navigate("/sign-in");
+  // };
 
   const openReviewModal = () => {
     setIsReviewModalOpen(true);
@@ -195,7 +191,7 @@ export default function Destination() {
           </div>
         </div>
       </div>
-      <Modal
+      {/* <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
         contentLabel="Login Required"
@@ -207,7 +203,7 @@ export default function Destination() {
         <button type="button" className="btn-book" onClick={closeModal}>
           Sign In
         </button>
-      </Modal>
+      </Modal> */}
       <Footer />
     </>
   );

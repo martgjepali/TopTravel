@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearch } from "../contexts/SearchProvider";
+import { useUserProfile } from "../hooks/useUserProfile";
 import DatePicker from "react-datepicker";
 import "../App.css";
 import "./HeroSection.css";
@@ -8,6 +9,7 @@ function HeroSection({ cardsRef }) {
   const { setFilters, filters } = useSearch();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const { profile } = useUserProfile();
 
   useEffect(() => {
     console.log("Current Filters:", filters);
@@ -37,7 +39,7 @@ function HeroSection({ cardsRef }) {
       endDate: adjustedEndDate,
     });
     if (cardsRef.current) {
-      cardsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      cardsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -53,7 +55,10 @@ function HeroSection({ cardsRef }) {
       />
 
       <h1>ADVENTURE AWAITS</h1>
+
       <p>What are you waiting for?</p>
+
+      {profile && profile.FirstName && <h2 className="welcome-user">Welcome, {profile.FirstName}!</h2>}
 
       <form className="search" onSubmit={handleSubmit}>
         <div className="search-container">

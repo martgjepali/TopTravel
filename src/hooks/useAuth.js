@@ -29,6 +29,7 @@ export function useAuth() {
       localStorage.setItem("user", JSON.stringify(data));
       console.log("User data: ", data)
       setUser(data);
+      toast.success("Welcome");
       navigate("/"); // Example redirection on successful login
     } catch (error) {
       console.error("Login failed", error);

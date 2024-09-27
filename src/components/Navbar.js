@@ -18,7 +18,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     await logout();
-    navigate("/sign-in"); 
+    navigate("/sign-in");
     closeMobileMenu();
   };
 
@@ -59,7 +59,11 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/about-us" className="nav-links" onClick={closeMobileMenu}>
+              <Link
+                to="/about-us"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
                 About Us
               </Link>
             </li>
@@ -70,6 +74,15 @@ function Navbar() {
                 onClick={closeMobileMenu}
               >
                 Services
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/booking-history"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
+                Bookings
               </Link>
             </li>
             {/* <li className="nav-item">

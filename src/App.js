@@ -20,8 +20,9 @@ import PaymentErrorPage from "./components/pages/PaymentErrorPage";
 import About from "./components/pages/About";
 import HowWeAre from "./components/pages/HowWeAre";
 import HowItWorks from "./components/pages/HowItWorks";
-import Testimonials  from "./components/pages/Testimonials";
+import Testimonials from "./components/pages/Testimonials";
 import TermOfServices from "./components/pages/TermOfServices";
+import BookingHistory from "./components/BookingHistory";
 import PublicRoute from "./routes/PublicRoute";
 import MoonLoader from "react-spinners/MoonLoader";
 import "./App.css";
@@ -118,14 +119,7 @@ function App() {
               element={<Packages />}
             />
             <Route path="/packages/:packageId" element={<Destination />} />
-            <Route
-              path="/book-package/:packageId"
-              element={
-                <AuthGuard>
-                  <Booking />
-                </AuthGuard>
-              }
-            />
+            <Route path="/book-package/:packageId" element={<Booking />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/activate-account" element={<ActivateAccount />} />
@@ -136,6 +130,14 @@ function App() {
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/terms-of-services" element={<TermOfServices />} />
+            <Route
+              path="/booking-history"
+              element={
+                <AuthGuard>
+                  <BookingHistory />
+                </AuthGuard>
+              }
+            />
           </Routes>
         </ScrollToTop>
       </SearchProvider>
