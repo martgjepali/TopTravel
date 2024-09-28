@@ -1,4 +1,5 @@
 import Footer from "../Footer";
+import Image from "../../assets/image-hike.jpeg";
 import "./HowWeAre.css";
 
 const HowWeAre = () => {
@@ -6,10 +7,7 @@ const HowWeAre = () => {
     <>
       <div class="responsive-container-block bigContainer">
         <div class="responsive-container-block Container bottomContainer">
-          <img
-            class="mainImg"
-            src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/xpraup2.svg"
-          />
+          <img class="mainImg" src={Image} />
           <div class="allText bottomText">
             <h2 class="text-blk headingText">How We Are</h2>
             <p class="text-blk description">

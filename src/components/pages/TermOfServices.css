@@ -9,7 +9,8 @@
   }
   
   .privacy-policy-header {
-    color: var(--color-accent);
+    font-size: 1.5rem;
+    color: rgb(26, 23, 23);
   }
   
   .privacy-text {
@@ -25,4 +26,11 @@
   a:hover {
     text-decoration: underline;
   }
+
+  .container-list {
+    background-color: #f2f2f2;
+    padding: 22px 90px 25px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+}
   
