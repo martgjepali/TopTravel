@@ -1,8 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import Footer from "../Footer";
 import Image from "../../assets/image-hike.jpeg";
 import "./HowWeAre.css";
 
 const HowWeAre = () => {
+  const navigate = useNavigate();
+  
+  function handleNavigate() {
+    navigate("/destinations"); 
+  }
   return (
     <>
       <div class="responsive-container-block bigContainer">
@@ -15,7 +21,9 @@ const HowWeAre = () => {
               pulvinar ullamcorper suspendisse ac eget. Pellentesque tempus leo
               in ullamcorper quis vestibulum ligula elementum ut.
             </p>
-            <button class="explore">Explore</button>
+            <button type="button" class="explore" onClick={handleNavigate}>
+              Explore
+            </button>
           </div>
         </div>
       </div>

@@ -1,20 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUsers, FaCog, FaBalanceScale } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
 import Footer from "../Footer";
-import Image from "../../assets/about-img.jpg"
+import Image from "../../assets/about-img.jpg";
 import "./About.css";
 
 const About = () => {
+  const navigate = useNavigate();
+
+  function handleNavigate() {
+    navigate("/destinations");
+  }
+
   return (
     <div>
       <div className="responsive-container-block bigContainer">
         <div className="responsive-container-block Container">
-          <img
-            className="mainImg"
-            src={Image}
-            alt="About Us"
-          />
+          <img className="mainImg" src={Image} alt="About Us" />
           <div className="allText aboveText">
             <h2 className="text-blk headingText">About Us</h2>
             <p className="text-blk description">
@@ -48,7 +50,9 @@ const About = () => {
                 </div>
               </Link>
             </div>
-            <button className="explore">Explore</button>
+            <button className="explore" onClick={handleNavigate}>
+              Explore
+            </button>
           </div>
         </div>
       </div>
