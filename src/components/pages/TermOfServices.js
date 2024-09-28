@@ -1,8 +1,10 @@
+
 import Footer from "../Footer";
 import "./TermOfServices.css";
 
 const TermOfServices = () => {
   return (
+
     <>
       <div className="privacy-policy-container">
         <h1 className="privacy-policy-header">Terms Of Services</h1>
