@@ -156,12 +156,12 @@ video {
 
 @media screen and (max-width: 768px) {
   .hero-container > h1 {
-    font-size: 50px;
-    margin-top: -100px;
+    font-size: 30px;
+    margin-top: -50px;
   }
 
   .hero-container > p {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .btn-mobile {
@@ -199,5 +199,9 @@ video {
 
   .search-container > input {
     text-align: center;
+  }
+
+  .welcome-user {
+    margin-top: 12px;
   }
 }
