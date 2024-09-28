@@ -38,23 +38,14 @@ function Footer() {
           <div className='footer-link-items'>
             <h2>Contact Us</h2>
             <Link to='/contact'>Contact</Link>
-            <Link to='/'>Support</Link>
-            <Link to='/destinations'>Destinations</Link>
+            <a href="mailto:support@top-travel.uk">support@top-travel.uk</a>
           </div>
         </div>
         <div className='footer-link-wrapper'>
           <div className='footer-link-items'>
-            <h2>Videos</h2>
-            <Link to='/'>Submit Video</Link>
-            <Link to='/'>Ambassadors</Link>
-            <Link to='/'>Agency</Link>
-            <Link to='/'>Influencer</Link>
-          </div>
-          <div className='footer-link-items'>
             <h2>Social Media</h2>
             <Link to='/'>Instagram</Link>
             <Link to='/'>Facebook</Link>
-            <Link to='/'>Youtube</Link>
             <Link to='/'>Twitter</Link>
           </div>
         </div>
@@ -83,14 +74,6 @@ function Footer() {
               aria-label='Instagram'
             >
               <i className='fab fa-instagram' />
-            </Link>
-            <Link
-              className='social-icon-link youtube'
-              to='/'
-              target='_blank'
-              aria-label='Youtube'
-            >
-              <i className='fab fa-youtube' />
             </Link>
             <Link
               className='social-icon-link twitter'

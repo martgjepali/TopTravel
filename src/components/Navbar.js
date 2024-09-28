@@ -73,7 +73,16 @@ function Navbar() {
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                Services
+                Destinations
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/booking-history"
+                className="nav-links"
+                onClick={closeMobileMenu}
+              >
+                Bookings
               </Link>
             </li>
             <li className="nav-item">

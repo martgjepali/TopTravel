@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FaUsers, FaCog, FaBalanceScale } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
 import Footer from "../Footer";
+import Image from "../../assets/about-img.jpg"
 import "./About.css";
 
 const About = () => {
@@ -11,7 +12,7 @@ const About = () => {
         <div className="responsive-container-block Container">
           <img
             className="mainImg"
-            src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/eaboutus1.svg"
+            src={Image}
             alt="About Us"
           />
           <div className="allText aboveText">
