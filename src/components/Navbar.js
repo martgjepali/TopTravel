@@ -83,6 +83,7 @@ function Navbar() {
                 onClick={closeMobileMenu}
               >
                 Bookings
+
               </Link>
             </li>
             {/* <li className="nav-item">

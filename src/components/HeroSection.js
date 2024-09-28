@@ -54,7 +54,7 @@ function HeroSection({ cardsRef }) {
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
       />
 
-      <h1>ADVENTURE AWAITS</h1>
+      <h1 className="header-hero">ADVENTURE AWAITS</h1>
 
       <p>What are you waiting for?</p>
 
