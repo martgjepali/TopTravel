@@ -28,7 +28,7 @@ import MoonLoader from "react-spinners/MoonLoader";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-datepicker/dist/react-datepicker.css";
-import 'react-dropdown/style.css';
+import "react-dropdown/style.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

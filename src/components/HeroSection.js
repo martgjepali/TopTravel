@@ -5,8 +5,17 @@ import DatePicker from "react-datepicker";
 import useAllDestinations from "../hooks/useAllDestinations";
 import usePackagesByDestinationId from "../hooks/usePackagesByDestinationId";
 import Dropdown from "react-dropdown";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, A11y, Autoplay } from "swiper/modules";
 import "../App.css";
 import "./HeroSection.css";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import Slide_1 from "../assets/img-1.jpg";
+import Slide_2 from "../assets/cabin.jpeg";
+import Slide_3 from "../assets/sea.jpeg";
 
 function HeroSection({ cardsRef }) {
   const { setFilters, filters } = useSearch();
@@ -94,66 +103,92 @@ function HeroSection({ cardsRef }) {
 
   return (
     <div className="hero-container" data-aos="zoom-in">
-      <video
+      {/* <video
         src="/videos/video-1.mp4"
         autoPlay
         loop
         muted
         playsInline
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
-      />
+      /> */}
 
-      <h1 className="header-hero">ADVENTURE AWAITS</h1>
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay, A11y]}
+        spaceBetween={30}
+        slidesPerView={1}
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        autoplay={{
+          delay: 3000, // 3-second delay
+          disableOnInteraction: false,
+        }}
+        className="mySwiper"
+      >
+        <SwiperSlide>
+          <img src={Slide_1} className="images" />
+        </SwiperSlide>
 
-      <p>What are you waiting for?</p>
+        <SwiperSlide>
+          <img src={Slide_2} className="images" />
+        </SwiperSlide>
 
-      {profile && profile.FirstName && (
-        <h2 className="welcome-user">Welcome, {profile.FirstName}!</h2>
-      )}
+        <SwiperSlide>
+          <img src={Slide_3} className="images" />
+        </SwiperSlide>
+      </Swiper>
 
-      <form className="search" onSubmit={handleSubmit}>
-        <div className="search-container">
-          <label>Where are you going?</label>
-          <Dropdown
-            options={destinations.map((dest) => ({
-              value: dest.DestinationID,
-              label: dest.DestinationName,
-            }))}
-            onChange={handleChange}
-            value={selectedDestination}
-            placeholder="Choose a destination"
-            className="my-dropdown"
-          />
-        </div>
-        <div className="row-container">
+      <div className="date-container-overlay">
+        <h1 className="header-hero">ADVENTURE AWAITS</h1>
+        {/* <p>What are you waiting for?</p> */}
+
+        {profile && profile.FirstName && (
+          <h2 className="welcome-user">Welcome, {profile.FirstName}!</h2>
+        )}
+
+        <form className="search" onSubmit={handleSubmit}>
           <div className="search-container">
-            <label>Check-in</label>
-            <DatePicker
-              selected={startDate}
-              onChange={setStartDate}
-              dateFormat="MM/dd/yyyy"
-              placeholderText="Check-in Date"
-              className="date-picker-input"
+            <label>Where are you going?</label>
+            <Dropdown
+              options={destinations.map((dest) => ({
+                value: dest.DestinationID,
+                label: dest.DestinationName,
+              }))}
+              onChange={handleChange}
+              value={selectedDestination}
+              placeholder="Choose a destination"
+              className="my-dropdown"
             />
           </div>
-          <div className="search-container">
-            <label>Check out</label>
-            <DatePicker
-              selected={endDate}
-              onChange={setEndDate}
-              dateFormat="MM/dd/yyyy"
-              placeholderText="Check-out Date"
-              className="date-picker-input"
-              minDate={startDate}
-            />
+          <div className="row-container">
+            <div className="search-container">
+              <label>Check-in</label>
+              <DatePicker
+                selected={startDate}
+                onChange={setStartDate}
+                dateFormat="MM/dd/yyyy"
+                placeholderText="Check-in Date"
+                className="date-picker-input"
+              />
+            </div>
+            <div className="search-container">
+              <label>Check out</label>
+              <DatePicker
+                selected={endDate}
+                onChange={setEndDate}
+                dateFormat="MM/dd/yyyy"
+                placeholderText="Check-out Date"
+                className="date-picker-input"
+                minDate={startDate}
+              />
+            </div>
           </div>
-        </div>
-        <div className="search-container">
-          <button className="hero-btn" type="submit">
-            SEARCH
-          </button>
-        </div>
-      </form>
+          <div className="search-container">
+            <button className="hero-btn" type="submit">
+              SEARCH
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
