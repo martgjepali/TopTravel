@@ -134,6 +134,15 @@ function HeroSection({ cardsRef }) {
 
         <SwiperSlide>
           <img src={Slide_3} className="images" alt="slide_3" />
+          <img src={Slide_1} className="images" />
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <img src={Slide_2} className="images" />
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <img src={Slide_3} className="images" />
         </SwiperSlide>
       </Swiper>
 
