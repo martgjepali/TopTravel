@@ -13,7 +13,7 @@ const HowWeAre = () => {
     <>
       <div class="responsive-container-block bigContainer">
         <div class="responsive-container-block Container bottomContainer">
-          <img class="mainImg" src={Image} />
+          <img class="mainImg" src={Image} alt="main_image" />
           <div class="allText bottomText">
             <h2 class="text-blk headingText">How We Are</h2>
             <p class="text-blk description">

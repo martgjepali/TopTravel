@@ -1,9 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
 import { FaUsers, FaCog, FaBalanceScale } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
 import Footer from "../Footer";
-import Image from "../../assets/about-img.jpg";
 import Image from "../../assets/about-img.jpg";
 import "./About.css";
 
