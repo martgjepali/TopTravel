@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PackagesCards from "./PackagesCards";
-import usePackagesByDestinationId from "../hooks/usePackagesByDestinationId ";
+import usePackagesByDestinationId from "../hooks/usePackagesByDestinationId";
 import MoonLoader from "react-spinners/MoonLoader";
 
 const FilteredPackages = () => {

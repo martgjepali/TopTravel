@@ -18,7 +18,7 @@ import ActivateAccount from "./components/pages/ActivateAccount";
 import PaymentSuccessPage from "./components/pages/PaymentSuccessPage";
 import PaymentErrorPage from "./components/pages/PaymentErrorPage";
 import About from "./components/pages/About";
-import HowWeAre from "./components/pages/HowWeAre";
+import WhoWeAre from "./components/pages/WhoWeAre";
 import HowItWorks from "./components/pages/HowItWorks";
 import Testimonials from "./components/pages/Testimonials";
 import TermOfServices from "./components/pages/TermOfServices";
@@ -28,6 +28,7 @@ import MoonLoader from "react-spinners/MoonLoader";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import "react-datepicker/dist/react-datepicker.css";
+import "react-dropdown/style.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -92,7 +93,7 @@ function App() {
         <ScrollToTop>
           <Routes>
             <Route path="/" exact element={<Home />} />
-            <Route path="/destinations" exact element={<Services />} />
+            <Route path="/packages" exact element={<Services />} />
             <Route path="/contact" exact element={<Contact />} />
             <Route
               path="/sign-in"
@@ -126,7 +127,7 @@ function App() {
             <Route path="/payment-success" element={<PaymentSuccessPage />} />
             <Route path="/payment-error" element={<PaymentErrorPage />} />
             <Route path="/about-us" element={<About />} />
-            <Route path="/how-we-are" element={<HowWeAre />} />
+            <Route path="/who-we-are" element={<WhoWeAre />} />
             <Route path="/how-it-works" element={<HowItWorks />} />
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/terms-of-services" element={<TermOfServices />} />

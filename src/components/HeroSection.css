@@ -1,14 +1,60 @@
-video {
+/* video {
   object-fit: cover;
   width: 100%;
   height: 100%;
   position: fixed;
   z-index: -1;
+} */
+
+/* .carousel {
+  object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: fixed !important;
+  z-index: -1 !important;
+} */
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.date-container-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10; /* Ensures it stays above the Swiper */
 }
 
 .welcome-user {
-  color: #fff;
-  margin-top: 40px;
+  color: rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%;
+  margin-top: 20px;
   /* letter-spacing: 2px; */
   font-size: xx-large;
   font-weight: 500;
@@ -66,17 +112,21 @@ video {
 }
 
 .search {
-  margin: 6rem auto 0;
+  margin: 2rem auto 0;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0.8rem 0.4rem;
   border-radius: 0.5rem;
   background: #fff;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  gap: 15px;
 }
 
 .search-container {
   display: flex;
   align-items: center;
+  max-width: 300px; /* Limit max width */
   justify-content: center;
   flex-direction: column;
   padding: 0 1.5rem;
@@ -133,75 +183,147 @@ video {
   font-size: 16px;
 }
 
+.my-dropdown {
+  width: 100%;
+  height: 100%;
+}
+
+.Dropdown-control {
+  height: 65%;
+  margin-top: 2px;
+}
+
+.Dropdown-placeholder {
+  margin-top: 2px;
+}
+
 @media screen and (max-width: 960px) {
   .hero-container > h1 {
-    font-size: 70px;
-    margin-top: -150px;
+    font-size: 50px;
+    margin-top: -100px;
+  }
+
+  .date-container-overlay {
+    padding: 20px 30px;
+    width: 90%;
+  }
+
+  .search {
+    flex-direction: column;
+    width: 90%;
+    gap: 1rem;
   }
 
   .search-container {
-    padding: 0 0.8rem;
+    width: 100%;
+    padding: 0 0.5rem;
   }
 
-  .search-container > label {
-    font-size: 1rem;
-    color: #242424;
-    padding-bottom: 0.4rem;
+  .my-dropdown,
+  .date-picker-input {
+    font-size: 0.9rem;
+    padding: 6px 10px;
   }
 
-  .search-container > input {
-    font-size: 0.8rem;
+  .hero-btn {
+    max-width: 100%;
+    width: 80%;
+    margin-top: 10px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .hero-container > h1 {
-    font-size: 30px;
+    font-size: 40px;
     margin-top: -50px;
   }
 
   .hero-container > p {
-    font-size: 28px;
+    font-size: 24px;
   }
 
-  .btn-mobile {
-    display: block;
-    text-decoration: none;
-  }
-
-  .btn {
-    max-width: 100%;
+  .date-container-overlay {
+    width: 80%;
+    padding: 15px 20px;
   }
 
   .search {
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    padding: 0.8rem;
-    gap: 2rem;
-    margin: 4rem auto 0;
-    /* flex-direction: column;
-    padding: 0.8rem;
-    gap: 0.8rem;
-    width: 80%;
-    */
+    width: 95%;
+    gap: 1.5rem;
+    margin: 2rem auto 0;
   }
 
   .search-container {
-    padding: 0 0.8rem;
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+
+  .my-dropdown,
+  .date-picker-input {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+
+  .Dropdown-placeholder {
+    font-size: 1rem;
+  }
+
+  .date-picker-input {
+    font-size: 1rem !important;
+  }
+
+  .Dropdown-option {
+    font-size: 0.9rem;
   }
 
   .search-container > label {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: #242424;
-    padding-bottom: 0.4rem;
+    padding-bottom: 0.3rem;
   }
 
-  .search-container > input {
-    text-align: center;
+  .hero-btn {
+    width: 100%;
+    max-width: 200px;
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-container > h1 {
+    font-size: 30px;
+    margin-top: -30px;
   }
 
-  .welcome-user {
-    margin-top: 12px;
+  .hero-container > p {
+    font-size: 18px;
+  }
+
+  .date-container-overlay {
+    padding: 10px;
+    width: 80%;
+  }
+
+  .search {
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .search-container {
+    padding: 0 0.5rem;
+  }
+
+  .my-dropdown,
+  .date-picker-input {
+    padding: 6px 8px;
+    font-size: 0.7rem;
+  }
+
+  .hero-btn {
+    width: 100%;
+    margin-top: 10px;
   }
 }
