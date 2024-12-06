@@ -38,7 +38,7 @@ function Footer() {
           <div className='footer-link-items'>
             <h2>Contact Us</h2>
             <Link to='/contact'>Contact</Link>
-            <a href="mailto:support@top-travel.uk">support@top-travel.uk</a>
+            <a href="mailto:support@top-travel.uk">info@toptravel-albania.com</a>
           </div>
         </div>
         <div className='footer-link-wrapper'>
